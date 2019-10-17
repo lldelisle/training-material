@@ -2,7 +2,7 @@
 JEKYLL=jekyll
 PORT?=4000
 HOST?=0.0.0.0
-FLAGS?=""
+FLAGS?="--incremental"
 CHROME=google-chrome-stable
 TUTORIALS=$(shell find _site/training-material -name 'tutorial.html' | sed 's/_site\/training-material\///')
 SLIDES=$(shell find _site/training-material -name 'slides.html' | sed 's/_site\/training-material\///')

@@ -1,0 +1,1313 @@
+---
+layout: tutorial_slides
+logo: "GTN"
+
+title: "How-to admin Galaxy"
+questions:
+  - "What is galaxy?"
+  - "Can I put my tool in galaxy?"
+  - "What are the options for using Galaxy?"
+  - "Should we have a local galaxy lab/EPFL?"
+objectives:
+  - "Discover galaxy"
+  - "See if you can add your tool"
+  - "Discuss about galaxy at EPFL"
+time_estimation: "??"
+key_points:
+  - Galaxy gives access to command line tools to biologists.
+  - Wrapping a tool makes it available to all local galaxy platform and potentially to public ones.
+  - Conda and Bioconda are Galaxy best practices for connecting Galaxy tools to underlying applications and libraries.
+  - Planemo is your friend if you want to add a new tool in galaxy
+contributors:
+  - abretaud
+  - bagnacan
+  - bebatut
+  - bgruening
+  - erasche
+  - hmenager
+  - jmchilton
+  - lecorguille
+  - lldelisle
+  - nsoranzo
+  - pajanne
+  - shiltemann
+  - tnabtaf
+---
+
+# Before starting
+
+---
+
+class: enlarge120
+
+![](../../../../shared/images/conda_logo.png)
+
+Package, dependency and environment management
+
+???
+
+Conda is an open source package management system and environment management system 
+that runs on Windows, macOS and Linux. 
+
+Conda quickly installs, runs and updates packages and their dependencies.
+
+Conda easily creates, saves, loads and switches between environments on your local computer. 
+
+It was created for Python programs, but it can package and distribute software for any language.
+
+---
+
+class: left enlarge120
+
+###.image-25[![](../../../../shared/images/conda_logo.png)] <br/> Conda Terminology
+
+Conda **recipes** build **packages** that are published to **channels**.
+
+- **recipes** = flat directory with `meta.yml` a file with metadata, `build.sh` or `bld.bat` the script that install the package
+- **packages** = software / library etc...
+- **channel** = repository for compiled packages.
+
+---
+
+class: enlarge120
+
+### .image-25[![](../../../../shared/images/conda_logo.png)] <br /> Conda Key Features
+
+- No compilation at install time - *binaries* with their dependencies, libraries...
+
+- Support for all operating systems
+
+- Easy to manage *multiple versions* of the same recipe
+
+- HPC-ready: no root privileges needed
+
+- Easy-to-write YAML recipes
+
+- Vibrant Communities
+
+
+---
+
+###.image-25[![](../../../../shared/images/conda_logo.png)] <br/> Conda Distributions
+
+```
+
+
+```
+![](../../images/miniconda_vs_anaconda.png)
+
+???
+
+Miniconda is a free minimal installer for conda. 
+
+It is a small, bootstrap version of Anaconda that
+ includes only conda, Python, the packages they depend on,
+  and a small number of other useful packages, 
+  including pip, zlib and a few others
+
+---
+
+class: left
+
+###.image-25[![](../../../../shared/images/conda_logo.png)] <br/> Channels
+
+- Useful channels which are not added by default:
+    - conda-forge
+    - bioconda
+
+To add them:
+```bash
+conda config --add channel bioconda --add channel conda-forge
+```
+---
+
+class: enlarge120
+
+###.image-25[![](../../../../shared/images/conda_logo.png)] <br/> Quickstart
+#### Using Conda
+
+- Install some packages within an isolated environment
+
+```bash
+$ conda create -n planemo61 planemo=0.61.0
+$ which planemo
+$ conda env list
+planemo61          /home/ldelisle/.conda/envs/planemo61
+base            *  /opt/miniconda3
+$ conda activate planemo61
+(planemo61) $ which planemo
+(planemo61) $ conda install myPreferedSoftware
+```
+
+---
+
+# What is Galaxy?
+
+---
+
+[![Galaxy](../../../introduction/../../shared/images/galaxy_logo_25percent_transparent.png)](https://galaxyproject.org/)
+
+- **Web-based** platform for computational biomedical research (analysis and data integration)
+  - Developed at Penn State, Johns Hopkins, OHSU and Cleveland Clinic with substantial outside contributions
+  - **Open source** under [Academic Free License](https://opensource.org/licenses/AFL-3.0)
+- More than 7,500 [citations](https://www.zotero.org/groups/1732893/galaxy)
+- More than 150 [public Galaxy resources](https://galaxyproject.org/use/)
+  - 120+ public servers, many more non-public
+  - Both general-purpose and domain-specific
+
+![Galaxy resources](../../../introduction/images/titleless-use-resource-banner.png)
+
+???
+
+- The Galaxy Team is composed by bioinformaticians and software engineers
+- OHSU = Oregon Health & Science University
+---
+
+### Core values
+
+- **Accessibility**
+  - Users without programming experience can easily upload/retrieve data, run complex tools and workflows, and visualize data
+- **Reproducibility**
+  - Galaxy captures information so that any user can understand and repeat a complete computational analysis
+- **Transparency**
+  - Users can share or publish their analyses (histories, workflows, visualizations)
+  - Pages: online Methods for your paper
+
+???
+
+**accessible** **reproducible** **transparent** research means *sharing everything*.
+
+If the Galaxy framework makes everything as simple as possible, researchers are able to:
+- share their analyses
+- track all used tools and versions
+- check all parameters
+- justify each step in the analysis
+- publish the findings with all aforementioned information
+
+Pages: interactive, web-based documents that describe a complete analysis.
+
+---
+
+# User Interface
+Visit [https://usegalaxy.eu](https://usegalaxy.eu)
+
+???
+
+So now that we know what Galaxy and the Galaxy Project are all about, let's
+look at the Galaxy interface.
+
+---
+
+### Main Galaxy interface
+
+![Galaxy user interface](../../../introduction/images/galaxy_interface.png)
+
+Home page divided into 3 panels
+
+---
+
+### Tools
+
+![Tool interface](../../../introduction/images/101_11.png)
+
+- The tool search helps in finding a tool in a crowded toolbox
+
+---
+
+### Tool interface
+
+.image-50[![](../../../introduction/images/galaxy_tool.png)]
+- A tool form contains:
+  - input datasets and parameters
+  - help, citations, metadata
+  - an `Execute` button to start a job, which will add some output datasets to the history
+- New tool versions can be installed without removing old ones to ensure reproducibility
+
+???
+
+The tool form is generated from a simple XML file describing:
+- the input datasets and their datatypes
+- the tool parameters (numerical, text, boolean, selections, colour)
+- the dependencies required to run the tool
+- how to generate a command to execute the tool with the specified inputs and parameters
+- the output datasets the tool should produce and their datatypes
+- tests
+- help, citations
+- various metadata (e.g. the tool version)
+
+Click on the version button.
+Click on the Options - see in toolshed button.
+---
+
+### Tool Shed
+
+.image-50[![](../../../introduction/images/galaxy_ts.png)]
+- Free "app" store: [Galaxy Tool Shed](https://toolshed.g2.bx.psu.edu/)
+  - Thousands of tools already available
+  - Most software can be integrated
+     - If a tool is not available, ask the Galaxy community for help or write it yourself!
+  - Only a Galaxy admin can install tools
+
+---
+
+### History
+
+- Location of all analyses <img style="float: right;" alt="History" src="../../../introduction/images/history.png" />
+  - collects all datasets produced by tools
+  - collects all operations performed on the data
+
+- For each dataset (the heart of Galaxy’s reproducibility), the history tracks
+  - name, format, size, creation time, datatype-specific metadata
+  - tool id, version, inputs, parameters
+  - standard output (`stdout`) and error (`stderr`)
+  - state (<span style="background-color: grey">waiting</span>, <span style="background-color: yellow">running</span>, <span style="background-color: green">success</span>, <span style="background-color: red">failed</span>)
+  - hidden, deleted, purged
+
+???
+
+- We say *datasets* to refer to files as well as databases
+- Purged means permanently deleted
+
+---
+
+### Multiple histories
+
+- You can have as many histories as you want
+  - each history should correspond to a **different analysis**
+  - and should have a meaningful **name**
+
+.image-75[![](../../../introduction/images/galaxy_interface_multiple_histories.png)]
+
+???
+
+- Give it a good name so you can find it later. I have around a hundred histories and after a month I can't remember what I was doing in some, so a good name is important.
+- You can drag and drop datasets between histories
+
+---
+
+# Workflows
+
+???
+
+Now that you've got data into Galaxy, you know you can use tools to manipulate
+this data, and histories to keep track of what you've done. You're only missing one key part:
+workflows. These help you easily reproduce the exact analysis that you ran.
+
+---
+
+### Workflow Editor
+
+![Workflow interface](../../../introduction/images/RNA-Seq_workflow_editing.png)
+
+- **Extracted** from a history
+- **Built manually** by adding and configuring tools using the canvas
+- **Imported** using an existing shared workflow
+
+???
+
+Biologist:
+- workflows are great
+- single button to run all of these 50 different tools
+- a lot of work once to figure out analysis, but easy in the future to just rerun, go get coffee and wait for thing to be done :)
+
+
+Bioinf / dev:
+- Boxes are workflow steps
+  - 2 types: *input* and *tool* steps
+- Steps are connected by arrows representing the flow of datasets
+- Tool panel on the left with Inputs on top (to add input datasets and collections)
+- Small tool form on the right
+- Extracting a workflow from a history allows to easily convert an existing history into an analysis workflow
+
+---
+
+### Visualizations
+
+.image-75[![](../../../introduction/../dev/images/charts_examples2.png)]
+
+- Datatypes know what tools can be used to visualize datasets:
+  - Sequencing data has a button for visualizing in IGV/UCSC
+  - Tabular data will prompt you to build charts
+  - Protein data can be seen in a 3D viewer
+- Interactive environments: Jupyter, RStudio, etc
+
+---
+
+### Community
+
+- Support forum: [Galaxy Help](https://help.galaxyproject.org/)
+
+  ![Galaxy Help](../../../introduction/images/galaxy_help.png)
+- Community curated documentation: [Galaxy Community Hub](https://www.galaxyproject.org/)
+- [Events](https://galaxyproject.org/events/) all around the world
+- Galaxy Training for scientists, developers, admins, instructors: [Galaxy Training Community](https://training.galaxyproject.org/training-material/)
+  - Training questions? Chat with us on [Gitter](https://gitter.im/Galaxy-Training-Network/Lobby)
+
+???
+
+- know was a lot
+- we'll come back
+- slides are always available online
+- first real analysis after the coffee?
+
+---
+
+
+# Galaxy tools
+
+---
+
+### A tool in Galaxy
+
+![](../../images/galaxy_instance_detailed_screenshot.png)
+
+---
+
+### Galaxy tool / wrapper
+
+![](../../images/graphlan_screenshot.png)
+
+```bash
+graphlan.py --format "png" --size 7 input_tree.txt png_image.png
+```
+
+---
+
+### Wrapper
+
+- Description of the user interface
+- Link between the underlying tool and the Galaxy instance
+- How to invoke the tool
+- Which files and options to pass
+- Which files the tool will produce as output
+
+---
+
+### Wrapper
+
+![](../../images/wrapper_layers.png)
+
+???
+
+1. `<inputs>` (datasets and parameters) specified in the tool XML are exposed in the Galaxy tool UI
+2. When the user fills the form and click the `Execute` button, Galaxy fills the `<command>` template in the XML with the inputs entered by the user and execute the Cheetah code, producing a script as output
+3. Galaxy creates a job for the generated script and executes it somewhere (bowtie2 is run in this case)
+4. Some (not necessarily all) output files become new history datasets, as specified in the `<outputs>` XML tag set
+
+---
+
+### Wrapper
+
+![](../../images/wrapper_big_picture_1.png)
+
+???
+
+- CDATA tags are used to prevent the interpretation of ampersands and less-than signs as XML special characters
+- The tool name and description are combined in the left panel (tool menu), keep them short!
+
+---
+
+### Wrapper
+
+![](../../images/wrapper_big_picture_2.png)
+
+---
+
+### Wrapper
+
+![](../../images/wrapper_big_picture_3.png)
+
+---
+
+### Wrapper
+
+Galaxy tool XML format is formally defined in a XML Schema Definition (XSD), used to generate the relative [online documentation](https://docs.galaxyproject.org/en/latest/dev/schema.html)
+
+Today, I just give you the bases to be able to make simple tools.
+
+---
+
+### `command`
+#### How to invoke the tool?
+
+```xml
+<command><![CDATA[
+graphlan.py
+--format $format
+#if str($dpi):
+    --dpi $dpi
+#end if
+--size $size
+'$input_tree'
+]]></command>
+```
+
+<small>If the script is provided with the wrapper xml</small>
+```xml
+<command><![CDATA[
+python '$__tool_directory__/graphlan.py'
+# command params...
+]]></command>
+```
+
+???
+
+- In the first case, `graphlan.py` is expected to be on the PATH when the job executes. This is usually accomplished by specifying some `<requirement/>` tags.
+- In the second case, `$__tool_directory__` is a special variable which is substituted by Galaxy with the directory where the tool XML is
+- The `#if ... #end if` syntax comes from the [Cheetah](https://cheetahtemplate.org/) template language, which has a Python-like syntax
+
+---
+
+### `command`
+#### How to pass the parameters?
+
+![](../../images/graphlan_screenshot.png)
+
+---
+
+### `inputs` > `param` to `command`
+#### How to pass the parameters?
+
+```xml
+<inputs>
+    <param name="input_tree" type="data" label="..."/>
+
+    <param argument="--dpi" type="integer" optional="true" label="..."
+        help="For non vectorial formats" />
+</inputs>
+```
+
+???
+
+- `name` identifies a parameter
+- Parameters can have different types (`data`, `data_collection`, `integer`, `float`, `text`, `select`, `boolean`, `color`, `data_column`,...)
+- The content `argument` is automatically added at the end of the displayed help
+- When `argument` is specified and `name` is not, `name` is derived from `argument` by removing the initial dashes
+
+---
+
+### `inputs` > `param` to `command`
+#### Directly linked to `<command>`
+
+```xml
+<command><![CDATA[
+graphlan.py
+...
+#if str($dpi):
+    --dpi $dpi
+#end if
+'$input_tree'
+...
+]]></command>
+```
+
+---
+
+### `inputs` > `param` > `data`
+
+![](../../images/input_data.png)
+
+```xml
+<param name="..." type="data" format="txt" label="..." help="..." />
+```
+
+.footnote[[List of possible formats](https://github.com/galaxyproject/galaxy/blob/dev/lib/galaxy/config/sample/datatypes_conf.xml.sample)]
+
+---
+
+### `inputs` > `param` > `integer` | `float` | `text` | `boolean`
+
+![](../../images/input_integer_range.png)
+
+```xml
+<param name="..." type="float" min="0" max="10" value="1" label="..."
+    help="..."/>
+```
+
+![](../../images/input_text.png)
+
+```xml
+<param name="..." type="text" value="..." label="..." help="..."/>
+```
+
+![](../../images/input_boolean.png)
+
+```xml
+<param name="..." type="boolean" checked="false" truevalue="--log" falsevalue=""
+    label="..." help="..." />
+```
+???
+
+- In the first case, since *both* `min` and `max` are specified, a slider is shown in addition
+- You can also use type="integer"
+
+---
+
+### `inputs` > `param` > `select`
+
+![](../../images/input_select.png)
+
+```xml
+<param name="..." type="select" label="..." help="...">
+    <option value="png" selected="true">PNG</option>
+    <option value="pdf">PDF</option>
+    <option value="ps">PS</option>
+    <option value="eps">EPS</option>
+    <option value="svg">SVG</option>
+</param>
+```
+
+If no `option` has `selected="true"`, the first one is selected by default.
+
+
+---
+
+### `outputs`
+#### Which files the tool will produce as output?
+
+![](../../images/output.png)
+
+---
+
+### `outputs`
+
+```xml
+<outputs>
+    <data name="tree" format="txt" label="${tool.name} on ${on_string}: Tree" />
+    <data name="annotation" format="txt"
+        label="${tool.name} on ${on_string}: Annotation" />
+</outputs>
+```
+
+???
+
+`${tool.name} on ${on_string}` is the default output label, need to modify this if the tool generates more than 1 output
+
+---
+
+### Tips and best practices
+
+Use `&&` to concatenate multiple commands
+
+```xml
+<command><![CDATA[
+graphlan.py
+--format '$format'
+&&
+echo "Yeah it worked!"
+]]></command>
+```
+
+<small>The job will exit on the first error encountered.</small>
+
+---
+
+![](../../images/planemo-logo.png)
+
+> Command-line utilities to assist in building and publishing Galaxy tools.
+
+- [Documentation](https://planemo.readthedocs.io/en/latest/)
+- [Tutorial](https://planemo.readthedocs.io/en/latest/writing_standalone.html)
+
+---
+
+###.image-25[![](../../images/planemo-logo.png)]
+
+#### `planemo tool_init`
+
+Creates a skeleton of xml file
+
+```bash
+$ mkdir new_tool
+$ cd new_tool
+$ planemo tool_init --id 'some_short_id' --name 'My super tool'
+```
+
+Complicated version:
+
+```sh
+$ planemo tool_init --force \
+                    --id 'seqtk_seq' \
+                    --name 'Convert to FASTA (seqtk)' \
+                    --requirement seqtk@1.2 \
+                    --example_command 'seqtk seq -a 2.fastq > 2.fasta' \
+                    --example_input 2.fastq \
+                    --example_output 2.fasta \
+                    --test_case \
+                    --cite_url 'https://github.com/lh3/seqtk' \
+                    --help_from_command 'seqtk seq'
+```
+???
+Usage: planemo tool_init [OPTIONS]
+
+  Generate tool outline from given arguments.
+
+Options:
+
+  -i, --id TEXT             Short identifier for new tool (no whitespace)
+
+  -f, --force               Overwrite existing tool if present.
+  
+  -t, --tool FILE           Output path for new tool (default is <id>.xml)
+  
+  -n, --name TEXT           Name for new tool (user facing)
+  
+  --version TEXT            Tool XML version.
+  
+  -d, --description TEXT    Short description for new tool (user facing)
+  
+  -c, --command TEXT        Command potentially including cheetah variables
+                            ()(e.g. 'seqtk seq -a $input > $output')
+  
+  --example_command TEXT    Example to command with paths to build Cheetah
+                            template from (e.g. 'seqtk seq -a 2.fastq >
+                            2.fasta'). Option cannot be used with --command,
+                            should be used --example_input and
+                            --example_output.
+  
+  --example_input TEXT      For use with --example_command, replace input file
+                            (e.g. 2.fastq with a data input parameter).
+  
+  --example_output TEXT     For use with --example_command, replace input file
+                            (e.g. 2.fastq with a tool output).
+  
+  --named_output TEXT       Create a named output for use with command block
+                            for example specify --named_output=output1.bam and
+                            then use '-o $output1' in your command block.
+  
+  --input TEXT              An input description (e.g. input.fasta)
+  
+  --output TEXT             An output location (e.g. output.bam), the Galaxy
+                            datatype is inferred from the extension.
+  
+  --help_text TEXT          Help text (reStructuredText)
+  
+  --help_from_command TEXT  Auto populate help from supplied command.
+  
+  --doi TEXT                Supply a DOI (http://www.doi.org/) easing citation
+                            of the tool for Galxy users (e.g. 10.1101/014043).
+  
+  --cite_url TEXT           Supply a URL for citation.
+  
+  --test_case               For use with --example_commmand, generate a tool
+                            test case from the supplied example.
+  
+  --macros                  Generate a macros.xml for reuse across many tools.
+  
+  --version_command TEXT    Command to print version (e.g. 'seqtk --version')
+  
+  --requirement TEXT        Add a tool requirement package (e.g. 'seqtk' or
+                            'seqtk@1.68').
+  
+  --container TEXT          Add a Docker image identifier for this tool.
+  
+  --cwl                     Build a CWL tool instead of a Galaxy tool.
+  
+  --help                    Show this message and exit.
+
+
+---
+
+class: packed
+
+###.image-25[![](../../images/planemo-logo.png)]
+
+#### `planemo lint`
+
+Checks the syntax of a wrapper
+
+```bash
+$ planemo lint
+```
+
+```bash
+Linting tool /opt/galaxy/tools/seqtk_seq.xml
+Applying linter tests... CHECK
+.. CHECK: 1 test(s) found.
+Applying linter output... CHECK
+.. INFO: 1 outputs found.
+Applying linter inputs... CHECK
+.. INFO: Found 1 input parameters.
+Applying linter help... CHECK
+.. CHECK: Tool contains help section.
+.. CHECK: Help contains valid reStructuredText.
+Applying linter general... CHECK
+.. CHECK: Tool defines a version [0.1.0].
+.. CHECK: Tool defines a name [Convert to FASTA (seqtk)].
+.. CHECK: Tool defines an id [seqtk_seq].
+Applying linter command... CHECK
+.. INFO: Tool contains a command.
+Applying linter citations... CHECK
+.. CHECK: Found 1 likely valid citations.
+```
+
+---
+
+###.image-25[![](../../images/planemo-logo.png)]
+
+#### `planemo serve`
+
+View your new tool in a local Galaxy instance
+
+```bash
+$ planemo serve
+```
+
+Open http://127.0.0.1:9090/ in your web browser to view your new tool
+
+---
+
+###.image-25[![](../../images/planemo-logo.png)]
+
+#### Building Galaxy Tools
+
+![](../../images/planemo_tool_building_lint.png)
+
+---
+
+
+### {% icon hands_on %} Hands-on
+
+![](../../images/exercise.png)
+
+---
+class: left
+
+### {% icon hands_on %} Hands-on
+
+
+In a new directory:
+
+Write a simple script (bash/python/perl) which takes 2 inputs:
+ - a number (x)
+ - a text
+
+And write x times the text in a new output.
+
+Write a wrapper for your tool:
+  - `planemo tool_init`
+  - you can also use the template available [here](https://github.com/lldelisle/tools-lldelisle/blob/master/tools/hello/hello.xml)
+
+Check it with planemo (`planemo lint`)
+
+Test it with planemo (`planemo serve`)
+
+<small>If you finish before others, write another tool which take a text file and extract a given line. </small>
+
+---
+
+
+
+
+
+## Galaxy Dependencies
+
+These slides mirror the section on "Dependencies and Conda" in the [Planemo Documentation](https://planemo.readthedocs.io/en/latest/writing_advanced.html#dependencies-and-conda).
+
+---
+
+class: left, enlarge120
+
+### Example Tool (1 / 2)
+
+From Planemo docs - the following example builds a tool for the `seqtk seq` command.
+
+```sh
+$ planemo tool_init --force \
+                    --id 'seqtk_seq' \
+                    --name 'Convert to FASTA (seqtk)' \
+                    --requirement seqtk@1.2 \
+                    --example_command 'seqtk seq -a 2.fastq > 2.fasta' \
+                    --example_input 2.fastq \
+                    --example_output 2.fasta \
+                    --test_case \
+                    --cite_url 'https://github.com/lh3/seqtk' \
+                    --help_from_command 'seqtk seq'
+```
+
+Notice the `--requirement seqtk@1.2`.
+
+---
+
+class: left, enlarge120
+
+### Example Tool (2 / 2)
+
+The `--requirement seqtk@1.2` gets translated into the following Galaxy tool XML:
+
+```xml
+<requirements>
+    <requirement type="package" version="1.2">seqtk</requirement>
+</requirements>
+```
+
+---
+
+## Dependency Resolution
+
+![](../../images/galaxy_instance.png)
+
+???
+
+- Notice that multiple tools may be mapped to the same requirements and
+  any tools may use multiple Conda recipes.
+- There are few different ways to populate Applications and Libraries
+  on the right - we will talk about Conda which is what we consider the
+  "community best practice".
+
+---
+
+class: enlarge150
+
+## ![](../../../../shared/images/conda_logo.png) <br\> Conda and Galaxy
+
+Galaxy now automatically installs Conda when first launched and will use [Bioconda](https://bioconda.github.io/) and other channels for package resolution.
+
+---
+
+class: left
+
+### Linting Conda Dependencies
+
+The next few slides will use the seqtk example from Planemo's documentation - this can be downloaded to
+follow along using the following command:
+
+```bash
+$ planemo project_init --template=seqtk_complete seqtk_example
+$ cd seqtk_example
+```
+
+Planemo can check if the requirements of a tool are available in best practice Conda channels using the `--conda_requirements` flag of `planemo lint`.
+
+```bash
+$ planemo lint --conda_requirements
+Linting tool /home/ldelisle/Documents/mygit/test/seqtk_example/seqtk_seq.xml
+  ...
+Applying linter requirements_in_conda... CHECK
+.. INFO: Requirement [seqtk@1.2] matches target in best practice Conda channel [https://conda.anaconda.org/bioconda/linux-64].
+```
+*Notice Planemo indicates this tool is available and shows the channel it is available in.*
+
+---
+
+class: left
+
+### The Planemo `conda_install` command
+
+
+.reduce70[```sh
+$ planemo conda_install seqtk_seq.xml
+Install conda target CondaTarget[seqtk,version=1.2]
+/home/ldelisle/miniconda3/bin/conda create -y --quiet --override-channels --channel iuc --channel conda-forge --channel bioconda --channel defaults --name __seqtk@1.2 seqtk=1.2
+Collecting package metadata: ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/ldelisle/miniconda3/envs/__seqtk@1.2
+
+  added / updated specs:
+    - seqtk=1.2
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-9.1.0-hdf63c60_0
+  seqtk              bioconda/linux-64::seqtk-1.2-1
+  zlib               conda-forge/linux-64::zlib-1.2.11-h516909a_1006
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+$ which seqtk
+seqtk not found
+```]
+
+Notice seqtk hasn't been placed on the `PATH`, an environment has been setup that Galaxy (when
+used through Planemo) can leverage.
+
+---
+
+## Using the Tool Environment
+
+Now that we have verified the Conda environment setup with `conda_install` works properly on the
+command-line, we can use our tool!
+
+`planemo test` and `planemo serve` will use this environment by default now for this tool.
+
+---
+
+class: left
+
+### Planemo `test`
+
+.reduce70[```sh
+$ planemo test seqtk_seq.xml
+...
+2019-10-14 12:24:41,414 INFO  [galaxy.jobs.handler] (2) Job dispatched
+2019-10-14 12:24:41,524 DEBUG [galaxy.tools.deps] Using dependency seqtk version 1.2 of type conda
+2019-10-14 12:24:41,525 DEBUG [galaxy.tools.deps] Using dependency seqtk version 1.2 of type conda
+2019-10-14 12:24:41,538 INFO  [galaxy.jobs.command_factory] Built script [/tmp/tmpe8nrdkxv/job_working_directory/000/2/tool_script.sh] for tool command [[ "$(basename "$CONDA_DEFAULT_ENV")" = "$(basename '/home/ldelisle/miniconda3/envs/__seqtk@1.2')" ] ||
+MAX_TRIES=3
+COUNT=0
+while [ $COUNT -lt $MAX_TRIES ]; do
+...
+done ; seqtk seq -a '/tmp/tmpe8nrdkxv/files/7/e/9/dataset_7e9b6bad-75e9-4039-aa6e-127698cc6426.dat' > '/tmp/tmpe8nrdkxv/files/4/c/4/dataset_4c484877-66d1-44d5-929a-8d05d3b55353.dat']
+2019-10-14 12:24:41,572 DEBUG [galaxy.tools.deps] Using dependency bcftools version 1.5 of type conda
+2019-10-14 12:24:41,572 DEBUG [galaxy.tools.deps] Using dependency bcftools version 1.5 of type conda
+ok
+
+----------------------------------------------------------------------
+XML: /tmp/tmpe8nrdkxv/xunit.xml
+----------------------------------------------------------------------
+Ran 1 test in 14.254s
+
+OK
+...
+Testing complete. HTML report is in "/home/ldelisle/Documents/mygit/test/seqtk_example/tool_test_output.html".
+All 1 test(s) executed passed.
+seqtk_seq[0]: passed
+```]
+
+.enlarge120[
+The following line indicates the seqtk package was found:
+
+```
+[galaxy.tools.deps] Using dependency seqtk version 1.2 of type conda
+```
+]
+---
+
+### {% icon hands_on %} Hands-on
+
+![](../../images/exercise.png)
+
+---
+
+### {% icon hands_on %} Hands-on
+
+#### The Goal
+- Use the Planemo commands `conda_install`, `conda_env`, and `test` to practice the Galaxy tool dependency development lifecycle.
+
+---
+
+### {% icon hands_on %} Hands-on
+
+#### Steps
+
+Run the following commands to practice working with Galaxy tools, Planemo, and Conda.
+
+
+```bash
+$ planemo project_init --template=seqtk_complete seqtk_example
+```
+```bash
+$ cd seqtk_example
+```
+```bash
+$ planemo conda_install seqtk_seq.xml
+```
+```bash
+$ planemo test seqtk_seq.xml
+```
+---
+
+class: enlarge120
+
+## Finding the Correct Requirements & Packages
+
+The previous example worked because a published Bioconda recipe named `seqtk` at version `1.2`
+was previously published, but how can these be found?
+
+Two easy approaches are using `planemo conda_search` and using the Anaconda web search.
+
+---
+
+class: left
+
+### Using the Planemo `conda_search` Command
+
+The Planemo `conda_search` command is a shortcut around `conda search` that searches best
+practice channels that Galaxy is configured to work with:
+
+```sh
+$ planemo conda_search seqtk
+/home/ldelisle/miniconda3/bin/conda search --override-channels --channel iuc --channel conda-forge --channel bioconda --channel defaults '*seqtk*'
+Loading channels: done
+# Name                       Version           Build  Channel             
+fusioncatcher-seqtk              1.2      h84994c4_0  bioconda            
+seqtk                            r75               0  bioconda            
+seqtk                            r82               0  bioconda            
+seqtk                            r82               1  bioconda            
+seqtk                            r93               0  bioconda            
+seqtk                            1.2               0  bioconda            
+seqtk                            1.2               1  bioconda            
+seqtk                            1.3      h84994c4_1  bioconda            
+seqtk                            1.3      ha92aebf_0  bioconda            
+seqtk                            1.3      hed695b0_2  bioconda    planemo conda_search seqt
+```
+
+Alternatively, `conda` can be used directly:
+
+```sh
+$ $HOME/miniconda3/bin/conda search -c iuc -c conda-forge -c bioconda seqtk
+```
+
+---
+
+### Using Anaconda Search - https://anaconda.org
+
+![](../../images/anaconda_landing.png)
+
+
+???
+
+---
+
+### Using Anaconda Search - https://anaconda.org
+
+![](../../images/anaconda_result.png)
+
+???
+
+Notice that only one of these results is a best practice channel and so that is the
+only one that will be used by Galaxy by default.
+
+---
+
+### {% icon hands_on %} Hands-on
+
+![](../../images/exercise.png)
+
+---
+
+### {% icon hands_on %} Hands-on
+
+#### The Goal
+- Find the correct package and version for a tool in a best practice channel.
+- Add a requirement to a tool to allow Galaxy to find, install, and use a Conda package.
+
+---
+
+### {% icon hands_on %} Hands-on
+
+#### Steps
+
+1. Run the following commands to download an example tool to modify.
+```sh
+$ planemo project_init --template conda_exercises conda_exercises
+$ cd conda_exercises/exercise1
+$ ls
+pear.xml              test-data
+```
+2. Run `planemo test pear.xml` to verify the tool does not function without dependencies defined.
+3. Use `--conda_requirements` flag with `planemo lint` to verify it does indeed lack requirements.
+4. Use `planemo conda_search` or the [Anaconda](https://anaconda.org/) website to search for the correct package and version in a best practice channel.
+5. Update pear.xml with the correct requirement tags.
+6. Re-run the `lint` command from above to verify the tool now has the correct dependency definition.
+7. Re-run the `test` command from above to verify the tool test now works properly.
+
+
+---
+
+###.image-25[![](../../../../shared/images/conda_logo.png)] <br/> Writing a Conda Recipe
+
+If searching best practice channels fails, you may need to build a Conda recipe.
+
+<br/>
+<br/>
+
+There are skeleton for packages available in PyPI, cpan, CRAN, Bioconductor.
+
+.footnote[[Documentation about how to write conda recipes from scratch](https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html) <br/> [Bioconda guidelines](https://daler.github.io/bioconda-docs/guidelines.html)]
+
+
+
+---
+# Options for using Galaxy
+
+---
+
+### Options for using Galaxy
+
+Galaxy is available in _many_ different ways and some of those ways are better suited for some tasks than others. Here are some guidelines to help you decide how to use Galaxy.
+
+---
+
+### Which Galaxy instance to use?
+<font size="1.1" >
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">UseGalaxy Servers</th>
+<th align="center">Public Servers</th>
+<th align="center">TIaaS</th>
+<th align="center">Academic Cloud Services</th>
+<th align="center">Commercial Cloud Services</th>
+<th align="center">Containers</th>
+<th align="center">VMs</th>
+<th align="center">Local</th>
+</tr>
+
+</thead>
+<tbody>
+<tr>
+<td align="center">Free to use</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes<sup>1</sup></td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">Uses your local compute infrastructure</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">Yes<sup>2</sup></td>
+<td align="center">Yes<sup>2</sup></td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">Your have large datasets with many intermediate datasets ( &gt; 250GB)</td>
+<td align="center">No</td>
+<td align="center">?</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">?<sup>3</sup></td>
+<td align="center">?<sup>3</sup></td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">Your computational requirements are similarly large</td>
+<td align="center">No</td>
+<td align="center">?</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">?<sup>3</sup></td>
+<td align="center">?<sup>3</sup></td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">You want to share your Galaxy objects with others outside your organization</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes<sup>4</sup></td>
+<td align="center">Yes<sup>4</sup></td>
+<td align="center">?<sup>5</sup></td>
+</tr>
+<tr>
+<td align="center">You have control over the tools and reference genomes that are installed</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">Yes<sup>5</sup></td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">You have absolute data security requirements</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">No</td>
+<td align="center">?</td>
+<td align="center">?</td>
+<td align="center">?</td>
+<td align="center">?</td>
+<td align="center">Yes</td>
+</tr>
+
+</tbody>
+</table>
+
+<p align="left"><sup>1</sup> If you qualify for the service.<br>
+<sup>2</sup> Although these technologies can also be deployed on clouds.<br>
+<sup>3</sup> Depends on the size of the system you are running it on.<br>
+<sup>4</sup> With these technologies you can save the server and share the entire platform with them.<br>
+<sup>5</sup> Depends on configuration.<br></p>
+
+</font>
+
+---
+
+### UseGalaxy Servers
+
+UseGalaxy servers implement a common core set of tools and reference genomes, and are open to anyone to use. They also contain tools and genomes that are local to each server. Each is backed by significant computational resources and they are excellent places to get started with Galaxy, and to share and publish your results.
+  - UseGalaxy.org 
+  - UseGalaxy.eu
+  - UseGalaxy.org.au
+  - UseGalaxy.be
+
+---
+
+### Public Galaxy Servers
+
+There are 126 Public Galaxy Servers
+![](../../images/publicGalaxySeversMap.png)
+They are acccessible to (at least) any academic researcher in the world. Some require you to create/request an account, aand they may have restrictive quotas, but often, to use these, just go the website and start running analyses. These are free to use.
+
+Complete list and stats on status and number of tools: [https://stats.galaxyproject.eu/d/000000020/public-galaxy-servers?orgId=1](https://stats.galaxyproject.eu/d/000000020/public-galaxy-servers?orgId=1)
+
+---
+
+
+### Academic Cloud Services
+
+These are academic cloud providers where ready to run Galaxy instances are available. Many of these are restricted to users within a particular geographic domain, for example, a country, province, or consortium of countries. These are often free to eligible researchers.
+
+---
+
+### Commercial Cloud Services
+
+
+These commercial cloud providers have ready to run Galaxy instances are available. You need to pay for these, but you only need to pay for as long as you need the instance to be up.
+
+---
+
+### Containers
+
+These Galaxy instances are prepackaged using container technology, usually Docker. You run these locally by first installing the container technology (Docker is easy), and then launching the containerized Galaxy within that technology. These use your local resources.
+
+---
+
+### Virtual Machines (VMs)
+
+VMs are similar to containers but use a different technology. Containers take significant advantage of your computer's underlying operating system. Virtual Machines include an entire supporting operating system, and are significantly larger than containers. You run these locally by first installing a VM player like VirtualBox, and then downloading and launching the VM within that player. These use local resources.
+
+---
+
+### Run your own Galaxy locally
+
+- Galaxy is [open source software](https://getgalaxy.org/en/master/) and can be installed on local compute infrastructure, from lab servers to institutional compute clusters
+- Installing Galaxy locally is relatively easy, but
+  - the initial install does not include reference genomes and only has a few tools
+  - installing tools and genomes, setting up authentication, and connecting to institutional compute resources all takes work
+- Main advantages personnaly as an admin:
+  - you install the tools you want (including your own).
+  - the storage can be greatly increased compared to public ones.
+  - goes faster (?)
+  - have access to your biologist histories
+  - also to the logs to understand when something goes wrong.
+---
+class: left
+### Useful links
+ - [All galaxy training material (for biologist and developers)](https://training.galaxyproject.org/)
+ - [online documentation for tools wrapper](https://docs.galaxyproject.org/en/latest/dev/schema.html)
+ - [List of possible formats](https://github.com/galaxyproject/galaxy/blob/dev/lib/galaxy/config/sample/datatypes_conf.xml.sample)
+ - [Documentation about how to write conda recipes from scratch](https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html)
+   - [Hands-on to build a conda recipe](https://training.galaxyproject.org/training-material/topics/dev/tutorials/conda/slides.html#51)
