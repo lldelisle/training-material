@@ -10,7 +10,7 @@ questions:
   - "Should we have a local galaxy lab/EPFL?"
 objectives:
   - "Discover galaxy"
-  - "See if you can add your tool"
+  - "See if/how you can add your tool"
   - "Discuss about galaxy at EPFL"
 time_estimation: "??"
 key_points:
@@ -171,7 +171,7 @@ $ conda activate planemo61
   - Galaxy captures information so that any user can understand and repeat a complete computational analysis
 - **Transparency**
   - Users can share or publish their analyses (histories, workflows, visualizations)
-  - Pages: online Methods for your paper
+  - Users can generate [Pages](https://galaxyproject.org/learn/galaxy-pages/): online Methods for your paper
 
 ???
 
@@ -786,13 +786,15 @@ And write x times the text in a new output.
 
 Write a wrapper for your tool:
   - `planemo tool_init`
-  - you can also use the template available [here](https://github.com/lldelisle/tools-lldelisle/blob/master/tools/hello/hello.xml)
+  - you can also use the hello world wrapper as a template (available [here](https://github.com/lldelisle/tools-lldelisle/blob/master/tools/hello/hello.xml)).
 
 Check it with planemo (`planemo lint`)
 
-Test it with planemo (`planemo serve`)
+Test it with planemo (`planemo serve`*)
 
 <small>If you finish before others, write another tool which take a text file and extract a given line. </small>
+
+.footnote[*`planemo serve` will create a local minimal galaxy instance. This is quite resource demanding and I advice you to save everything before in case your computer crashes.]
 
 ---
 
@@ -826,6 +828,10 @@ $ planemo tool_init --force \
 ```
 
 Notice the `--requirement seqtk@1.2`.
+
+???
+
+Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format. 
 
 ---
 
@@ -1014,14 +1020,17 @@ $ planemo test seqtk_seq.xml
 ```
 ---
 
-class: enlarge120
+class: left enlarge120
 
 ## Finding the Correct Requirements & Packages
 
 The previous example worked because a published Bioconda recipe named `seqtk` at version `1.2`
 was previously published, but how can these be found?
 
-Two easy approaches are using `planemo conda_search` and using the Anaconda web search.
+Two easy approaches are 
+
+1. using `planemo conda_search` 
+1. using the Anaconda web search.
 
 ---
 
@@ -1259,7 +1268,7 @@ UseGalaxy servers implement a common core set of tools and reference genomes, an
 
 There are 126 Public Galaxy Servers
 ![](../../images/publicGalaxySeversMap.png)
-They are acccessible to (at least) any academic researcher in the world. Some require you to create/request an account, aand they may have restrictive quotas, but often, to use these, just go the website and start running analyses. These are free to use.
+They are acccessible to (at least) any academic researcher in the world. Some require you to create/request an account, and they may have restrictive quotas, but often, to use these, just go the website and start running analyses. These are free to use.
 
 Complete list and stats on status and number of tools: [https://stats.galaxyproject.eu/d/000000020/public-galaxy-servers?orgId=1](https://stats.galaxyproject.eu/d/000000020/public-galaxy-servers?orgId=1)
 
