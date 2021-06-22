@@ -172,6 +172,9 @@
                 <label data-value="rainbow" class="btn btn-secondary">
                     <input type="radio" name="options" id="rainbow" autocomplete="off"> Rainbow
                 </label>
+                <label data-value="progress" class="btn btn-secondary">
+                    <input type="radio" name="options" id="progress" autocomplete="off">🏳️‍🌈
+                </label>
                 <label data-value="halloween" class="btn btn-secondary">
                     <input type="radio" name="options" id="halloween" autocomplete="off"> 🎃
                 </label>
@@ -181,6 +184,26 @@
             </div>
 
         </div>
+
+        <div class="dropdown-item">
+            <div>
+                <i class="fas fa-history" aria-hidden="true"></i><span class="visually-hidden">galaxy-rulebuilder-history</span> Previous Versions
+            </div>
+
+            
+            <div id="archive-selector">
+            
+                <a class="btn btn-warning" href="https://training.galaxyproject.org/archive/2019-10-01/topics/galaxy-interface/tutorials/ncbi-sarf/tutorial.html" title="Version 2019-10-01">2019-10-01</a>
+            
+                <a class="btn btn-warning" href="https://training.galaxyproject.org/archive/2019-09-01/topics/galaxy-interface/tutorials/ncbi-sarf/tutorial.html" title="Version 2019-09-01">2019-09-01</a>
+            
+                <a class="btn btn-warning" href="https://training.galaxyproject.org/archive/2019-08-01/topics/galaxy-interface/tutorials/ncbi-sarf/tutorial.html" title="Version 2019-08-01">2019-08-01</a>
+            
+                <a class="btn btn-warning" href="https://training.galaxyproject.org/archive/" title="Older Versions">Older Versions</a>
+            </div>
+
+        </div>
+
     </div>
 </li>
 
@@ -484,7 +507,7 @@
             </ul>
             
 
-            <div><strong> <i class="far fa-calendar" aria-hidden="true"></i><span class="visually-hidden">last_modification</span> Last modification:</strong> Jun 14, 2021 </div>
+            <div><strong> <i class="far fa-calendar" aria-hidden="true"></i><span class="visually-hidden">last_modification</span> Last modification:</strong> Jun 16, 2021 </div>
         </blockquote>
 
         <div class="container">
@@ -524,6 +547,7 @@
       <li><a href="#sra-aligned-read-format" id="markdown-toc-sra-aligned-read-format">SRA Aligned Read Format</a></li>
     </ol>
   </li>
+  <li><a href="#workflow-diagram" id="markdown-toc-workflow-diagram"><span class="notranslate">Workflow</span> Diagram</a></li>
   <li><a href="#finding-sra-sars-cov-2-runs-of-interest" id="markdown-toc-finding-sra-sars-cov-2-runs-of-interest">Finding SRA SARS-CoV-2 Runs of Interest</a></li>
   <li><a href="#query-sarf-metadata" id="markdown-toc-query-sarf-metadata">Query SARF Metadata</a></li>
   <li><a href="#importing-sarfs-of-interest" id="markdown-toc-importing-sarfs-of-interest">Importing SARFs of Interest</a></li>
@@ -571,6 +595,10 @@
 We hope to include that functionality in a future update.</p>
 
 </blockquote>
+
+<h1 id="workflow-diagram"><span class="notranslate">Workflow</span> Diagram</h1>
+
+<figure id="figure-1"><img src="../../images/SARF_Workflow_Overview.png" alt="Workflow Diagram for this Tutorial" /><figcaption><span class="figcaption-prefix">Figure 1:</span> <span class="notranslate">Workflow</span> Diagram for this Tutorial</figcaption></figure>
 
 <h1 id="finding-sra-sars-cov-2-runs-of-interest">Finding SRA SARS-CoV-2 Runs of Interest</h1>
 
@@ -621,7 +649,7 @@ We hope to include that functionality in a future update.</p>
     <li>
       <p><strong>Click</strong> <code class="language-plaintext highlighter-rouge">Rule-based</code> as shown below.</p>
 
-      <figure id="figure-1"><img src="../../images/rules/rules_example_1_1_rules_landing.png" alt="screenshot of the rule based uploader modal, it is empty" /><figcaption><span class="figcaption-prefix">Figure 1:</span> Be sure that you are uploading data as Datasets, and that it will be loaded from a 'Pasted Table'</figcaption></figure>
+      <figure id="figure-2"><img src="../../images/rules/rules_example_1_1_rules_landing.png" alt="screenshot of the rule based uploader modal, it is empty" /><figcaption><span class="figcaption-prefix">Figure 2:</span> Be sure that you are uploading data as Datasets, and that it will be loaded from a 'Pasted Table'</figcaption></figure>
 
       <ol>
         <li>
@@ -1190,7 +1218,7 @@ You can find full definitions for these columns here:</p>
     title = "SRA Aligned Read Format to Speed Up SARS-CoV-2 data Analysis (Galaxy Training Materials)",
     year = "2021",
     month = "06",
-    day = "14"
+    day = "16"
     url = "\url{https://training.galaxyproject.org/training-material/topics/galaxy-interface/tutorials/ncbi-sarf/tutorial.html}",
     note = "[Online; accessed TODAY]"
 }
