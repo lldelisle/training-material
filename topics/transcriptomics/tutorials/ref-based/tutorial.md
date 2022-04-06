@@ -1503,7 +1503,7 @@ To extract the normalized counts for the interesting genes, we join the normaliz
 > 5. Rename the output to `Normalized counts for the most differentially expressed genes`.
 {: .hands_on}
 
-We now have a table with 131 lines (the 112 most differentially expressed genes and a header) and the normalized counts for these genes across the 7 samples.
+We now have a table with 113 lines (the 112 most differentially expressed genes and a header) and the normalized counts for these genes across the 7 samples.
 
 > ### {% icon hands_on %} Hands-on: Plot the heatmap of the normalized counts of these genes for the samples
 >
@@ -1709,11 +1709,11 @@ We have now the two required input files for goseq.
     >
     > > ### {% icon solution %} Solution
     > >
-    > > 1. 31 GO terms (0.27%) are over-represented and 80 (0.70%) under-represented.
+    > > 1. 38 GO terms (0.33%) are over-represented and 74 (0.65%) under-represented.
     > >
     > >    {% tool [Filter](Filter1) %} on c8 (adjusted p-value for over-represented GO terms) and c9 (adjusted p-value for under-represented GO terms)
     > >
-    > > 2. For over-represented, 17 BP, 3 CC and 11 MF and for under-represented, 50 BP, 27 CC and 3 MF
+    > > 2. For over-represented, 19 BP, 3 CC and 16 MF and for under-represented, 49 BP, 22 CC and 3 MF
     > >
     > >    {% tool [Group data](Grouping1) %} on column 7 (category) and count on column 1 (IDs)
     > >
@@ -1779,9 +1779,9 @@ For example, the pathway `dme00010` represents the glycolysis process (conversio
     > > ### {% icon solution %} Solution
     > >
     > > 1. The file has 127 lines including an header, so 126 KEGG pathways have been identified.
-    > > 2. 2 KEGG pathways (1.57%) are over-represented, using **Filter** on c6 (adjusted p-value for over-represented KEGG pathways)
+    > > 2. 4 KEGG pathways (3.15%) are over-represented, using **Filter** on c6 (adjusted p-value for over-represented KEGG pathways)
     > > 3. The first 2 KEGG pathways are `01100` and `00010`. By searching on the [KEGG database](https://www.genome.jp/kegg/kegg2.html) for them, we can find more information about these pathways: `01100` corresponds to all metabolic pathways and `00010` to pathway for Glycolysis / Gluconeogenesis.
-    > > 4. 1 KEGG pathways (0.79%) is under-represented, using **Filter** on c7 (adjusted p-value for under-represented KEGG pathways): `03040`, Spliceosome
+    > > 4. No KEGG pathways is under-represented, using **Filter** on c7 (adjusted p-value for under-represented KEGG pathways).
     > {: .solution}
     {: .question}
 
@@ -1798,7 +1798,7 @@ This tool needs 2 main inputs:
 
       This can be for example a p-value or a fold change. This information will be added to the pathway plot: the node of the corresponding gene will be colored given the value. If there are different columns, the different information will be plotted side by side on the node.
 
-Here we would like to visualize the 2 KEGG pathways: the over-represented `00010` (Glycolysis / Gluconeogenesis) and the under-represented `03040` (Spliceosome). We would like the gene nodes to be colored by Log2 Fold Change for the differentially expressed genes because of the treatment.
+Here we would like to visualize the 2 KEGG pathways among the over-represented: `00010` (Glycolysis / Gluconeogenesis) and `00030` (Pentose phosphate pathway). We would like the gene nodes to be colored by Log2 Fold Change for the differentially expressed genes because of the treatment.
 
 > ### {% icon hands_on %} Hands-on: Overlay log2FC on KEGG pathway
 >
@@ -1815,7 +1815,7 @@ Here we would like to visualize the 2 KEGG pathways: the over-represented `00010
 >
 >    ```
 >    00010
->    03040
+>    00030
 >    ```
 >
 > 5. {% tool [Pathview](toolshed.g2.bx.psu.edu/repos/iuc/pathview/pathview/1.24.0+galaxy0) %} with
