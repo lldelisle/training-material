@@ -1325,7 +1325,7 @@ For more information about **DESeq2** and its outputs, you can have a look at th
 > > ### {% icon solution %} Solution
 > >
 > > 1. You can manually check for the `FBgn0261552` in the first column or use the **Filter** tool with `c1 == "FBgn0261552"`. The fold-change is negative so it is indeed downregulated and the adjusted p-value is below 0.05 so it is part of the significantly changed genes.
-> > 2. FBgn0003360 is differentially expressed because of the treatment: it has a significant adjusted p-value ($$4.0 \cdot 10^{-178} << 0.05$$). It is less expressed (`-` in the log2FC column) in treated samples compared to untreated samples, by a factor ~8 ($$2^{log2FC} = 2^{2.99977727873544}$$).
+> > 2. FBgn0003360 is differentially expressed because of the treatment: it has a significant adjusted p-value ($$5.9 \cdot 10^{-173} << 0.05$$). It is less expressed (`-` in the log2FC column) in treated samples compared to untreated samples, by a factor ~8 ($$2^{log2FC} = 2^{2.99214605821122}$$).
 > > 3. DESeq2 in Galaxy returns the comparison between the different levels for the 1st factor, after
 correction for the variability due to the 2nd factor. In our current case, treated against untreated for any sequencing type. To compare sequencing types, we should run DESeq2 again switching factors: factor 1 (treatment) becomes factor 2 and factor 2 (sequencing) becomes factor 1.
 > > 4. To add the interaction between two factors (e.g. treated for paired-end data vs untreated for single-end), we should run DESeq2 another time but with only one factor with the following 4 levels:
@@ -1366,7 +1366,7 @@ Now we would like to extract the most differentially expressed genes due to the 
 >    >
 >    > > ### {% icon solution %} Solution
 >    > >
->    > > We get 1,091 genes (6.21%) with a significant change in gene expression between treated and untreated samples.
+>    > > We get 979 genes (5.58%) with a significant change in gene expression between treated and untreated samples.
 >    > >
 >    > {: .solution}
 >    {: .question}
@@ -1388,14 +1388,14 @@ Now we would like to extract the most differentially expressed genes due to the 
 >    >
 >    > > ### {% icon solution %} Solution
 >    > >
->    > > 130, or 11.92% of the significantly differentially expressed genes.
+>    > > 112, or 11.44% of the significantly differentially expressed genes.
 >    > >
 >    > {: .solution}
 >    {: .question}
 >
 {: .hands_on}
 
-We now have a table with 130 lines corresponding to the most differentially expressed genes. For each gene, we have its ID, its mean normalized counts (averaged over all samples from both conditions), its $$log_{2} FC$$ and other information.
+We now have a table with 112 lines corresponding to the most differentially expressed genes. For each gene, we have its ID, its mean normalized counts (averaged over all samples from both conditions), its $$log_{2} FC$$ and other information.
 
 The ID for each gene is something like FBgn0003360, which is an ID from the corresponding database, here Flybase ({% cite thurmond2018flybase %}). These IDs are unique but sometimes we prefer to have the gene names, even if they may not reference an unique gene (e.g. duplicated after re-annotation). But gene names may hint already to a function or they help you to search for desired candidates. We would also like to display the location of these genes within the genome. We can extract such information from the annotation file which we used for mapping and counting.
 
@@ -1503,7 +1503,7 @@ To extract the normalized counts for the interesting genes, we join the normaliz
 > 5. Rename the output to `Normalized counts for the most differentially expressed genes`.
 {: .hands_on}
 
-We now have a table with 131 lines (the 130 most differentially expressed genes and a header) and the normalized counts for these genes across the 7 samples.
+We now have a table with 131 lines (the 112 most differentially expressed genes and a header) and the normalized counts for these genes across the 7 samples.
 
 > ### {% icon hands_on %} Hands-on: Plot the heatmap of the normalized counts of these genes for the samples
 >
@@ -1529,7 +1529,7 @@ You should obtain something similar to:
 >
 > > ### {% icon solution %} Solution
 > >
-> > 1. The X-axis shows the 7 samples, together with a dendrogram representing the similarity between their patterns of gene expression. The Y-axis shows the 130 differentially expressed genes, likewise with a dendrogram representing the similarity between the patterns of gene expression. <!-- hope this is correct -->
+> > 1. The X-axis shows the 7 samples, together with a dendrogram representing the similarity between their patterns of gene expression. The Y-axis shows the 112 differentially expressed genes, likewise with a dendrogram representing the similarity between the patterns of gene expression. <!-- hope this is correct -->
 > > 2. The samples are clustering by treatment.
 > > 3. The scale changes and the differences between the genes are not visible anymore.
 > > 4. Extract the genes with $$log_{2} FC$$ > 1 (filter for genes with `c3>1` on the summary of the differentially expressed genes) and run **heatmap2** {% icon tool %} on the generated table.
