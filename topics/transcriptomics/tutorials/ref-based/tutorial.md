@@ -1401,7 +1401,7 @@ DESeq2 requires to provide for each factor, counts of samples in each category. 
 >                    - {% icon param-repeat %} *"Insert Factor level"*
 >                        - *"Specify a factor level, typical values could be 'tumor', 'normal', 'treated' or 'control'"*: `SE`
 >                      - *"Select groups that correspond to this factor level"*: `Tags: single`
->    - *"Files have header?"*: `No`
+>    - *"Files have header?"*: `True`
 >    - *"Choice of Input data"*: `Count data (e.g. from HTSeq-count, featureCounts or StringTie)`
 >    - In *"Output options"*:
 >        - *"Output selector"*: `Generate plots for visualizing the analysis results`, `Output normalised counts`
