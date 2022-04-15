@@ -1076,13 +1076,6 @@ To be able to identify differential gene expression induced by PS depletion, all
 >
 {: .hands_on}
 
-> ### {% icon details %} The counts obtained in the previous part may be different from the one imported
->
-> The featureCounts tables you download from zenodo (or from the Data Library) were generated with the option "Count fragments instead of reads" set to "Disabled". This way you roughly get twice the number of counts as each each read (from a pair) is counted individually.
-> In addition, the single reads dataset were run with the option `Length of the genomic sequence around annotated junctions` to 36 instead of 74.
-> Finally the header was removed from the featureCounts tables available on zenodo.
-{: .details}
-
 You might think We can just compare the count values in the files directly and calculate the extent of differential gene expression. However, it is not that simple.
 
 Let's imagine we have RNA-Seq counts from 3 samples for a genome with 4 genes:
