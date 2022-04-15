@@ -7,39 +7,39 @@
       elements:
       - class: File
         identifier: GSM461176_untreat_single
-        location: https://zenodo.org/record/1185122/files/GSM461176_untreat_single.counts
+        location: https://zenodo.org/record/to_update/files/GSM461176_untreat_single.counts
         filetype: tabular
       - class: File
         identifier: GSM461177_untreat_paired
-        location: https://zenodo.org/record/1185122/files/GSM461177_untreat_paired.counts
+        location: https://zenodo.org/record/to_update/files/GSM461177_untreat_paired.counts
         filetype: tabular
       - class: File
         identifier: GSM461178_untreat_paired
-        location: https://zenodo.org/record/1185122/files/GSM461178_untreat_paired.counts
+        location: https://zenodo.org/record/to_update/files/GSM461178_untreat_paired.counts
         filetype: tabular
       - class: File
         identifier: GSM461179_treat_single
-        location: https://zenodo.org/record/1185122/files/GSM461179_treat_single.counts
+        location: https://zenodo.org/record/to_update/files/GSM461179_treat_single.counts
         filetype: tabular
       - class: File
         identifier: GSM461180_treat_paired
-        location: https://zenodo.org/record/1185122/files/GSM461180_treat_paired.counts
+        location: https://zenodo.org/record/to_update/files/GSM461180_treat_paired.counts
         filetype: tabular
       - class: File
         identifier: GSM461181_treat_paired
-        location: https://zenodo.org/record/1185122/files/GSM461181_treat_paired.counts
+        location: https://zenodo.org/record/to_update/files/GSM461181_treat_paired.counts
         filetype: tabular
       - class: File
         identifier: GSM461182_untreat_single
-        location: https://zenodo.org/record/1185122/files/GSM461182_untreat_single.counts
+        location: https://zenodo.org/record/to_update/files/GSM461182_untreat_single.counts
         filetype: tabular
     Drosophila_melanogaster.BDGP6.87.gtf:
       class: File
-      location: https://zenodo.org/record/1185122/files/Drosophila_melanogaster.BDGP6.87.gtf
+      location: https://zenodo.org/record/to_update/files/Drosophila_melanogaster.BDGP6.87.gtf
       filetype: gtf
     Drosophila_melanogaster.BDGP6.87.gene_lengths:
       class: File
-      location: https://zenodo.org/record/1185122/files/Drosophila_melanogaster.BDGP6.87.gene_lengths
+      location: https://zenodo.org/record/to_update/files/Drosophila_melanogaster.BDGP6.87.gene_lengths
       filetype: tabular
     header:
       class: File
