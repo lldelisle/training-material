@@ -11,11 +11,11 @@
           elements:
           - identifier: forward
             class: File
-            location: https://zenodo.org/record/1185122/files/GSM461177_1.fastqsanger
+            location: https://zenodo.org/record/to_update/files/GSM461177_1.fastqsanger
             filetype: fastqsanger
           - identifier: reverse
             class: File
-            location: https://zenodo.org/record/1185122/files/GSM461177_2.fastqsanger
+            location: https://zenodo.org/record/to_update/files/GSM461177_2.fastqsanger
             filetype: fastqsanger
         - class: Collection
           type: paired
@@ -23,15 +23,15 @@
           elements:
           - identifier: forward
             class: File
-            location: https://zenodo.org/record/1185122/files/GSM461180_1.fastqsanger
+            location: https://zenodo.org/record/to_update/files/GSM461180_1.fastqsanger
             filetype: fastqsanger
           - identifier: reverse
             class: File
-            location: https://zenodo.org/record/1185122/files/GSM461180_2.fastqsanger
+            location: https://zenodo.org/record/to_update/files/GSM461180_2.fastqsanger
             filetype: fastqsanger
     Drosophila_melanogaster.BDGP6.87.gtf:
       class: File
-      location: https://zenodo.org/record/1185122/files/Drosophila_melanogaster.BDGP6.87.gtf
+      location: https://zenodo.org/record/to_update/files/Drosophila_melanogaster.BDGP6.87.gtf
       filetype: gtf
   outputs:
     multiqc_fastqc_html:
