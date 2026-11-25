@@ -4,6 +4,54 @@
     "comments": [
         {
             "child_steps": [
+                19,
+                7,
+                4,
+                11
+            ],
+            "color": "blue",
+            "data": {
+                "title": "Falco/MultiQC"
+            },
+            "id": 0,
+            "position": [
+                370.1,
+                0
+            ],
+            "size": [
+                1223,
+                423.7
+            ],
+            "type": "frame"
+        },
+        {
+            "child_steps": [
+                15,
+                20,
+                9,
+                6,
+                13,
+                14,
+                16,
+                17
+            ],
+            "color": "blue",
+            "data": {
+                "title": "STAR+MultiQC"
+            },
+            "id": 2,
+            "position": [
+                391.5,
+                1008.8
+            ],
+            "size": [
+                853.9,
+                1177.4
+            ],
+            "type": "frame"
+        },
+        {
+            "child_steps": [
                 18,
                 25,
                 27,
@@ -28,36 +76,10 @@
         },
         {
             "child_steps": [
-                15,
-                20,
-                6,
-                9,
-                13,
-                14,
-                16,
-                17
-            ],
-            "color": "blue",
-            "data": {
-                "title": "STAR+MultiQC"
-            },
-            "id": 2,
-            "position": [
-                391.5,
-                1008.8
-            ],
-            "size": [
-                853.9,
-                1177.4
-            ],
-            "type": "frame"
-        },
-        {
-            "child_steps": [
                 12,
                 8,
-                5,
-                3
+                3,
+                5
             ],
             "color": "blue",
             "data": {
@@ -71,28 +93,6 @@
             "size": [
                 988,
                 411.7
-            ],
-            "type": "frame"
-        },
-        {
-            "child_steps": [
-                19,
-                4,
-                7,
-                11
-            ],
-            "color": "blue",
-            "data": {
-                "title": "Falco/MultiQC"
-            },
-            "id": 0,
-            "position": [
-                370.1,
-                0
-            ],
-            "size": [
-                1223,
-                423.7
             ],
             "type": "frame"
         }
@@ -151,7 +151,7 @@
     ],
     "format-version": "0.1",
     "license": "MIT",
-    "name": "QC + Mapping + Counting (single+paired) - Ref Based RNA Seq - Transcriptomics - GTN",
+    "name": "QC + Mapping + Counting (single+paired) - Ref Based RNA Seq - Transcriptomics - GTN (imported from uploaded file)",
     "report": {
         "markdown": "\n# Workflow Execution Report\n\n## Workflow Inputs\n```galaxy\ninvocation_inputs()\n```\n\n## Workflow Outputs\n```galaxy\ninvocation_outputs()\n```\n\n## Workflow\n```galaxy\nworkflow_display()\n```\n"
     },
@@ -1240,7 +1240,7 @@
                         "outputs": [],
                         "position": {
                             "left": 0,
-                            "top": 0
+                            "top": 11.666904263977845
                         },
                         "tool_id": null,
                         "tool_state": "{\"optional\": false, \"tag\": null, \"collection_type\": \"list\", \"fields\": null, \"column_definitions\": null}",
@@ -1267,7 +1267,7 @@
                         "outputs": [],
                         "position": {
                             "left": 59,
-                            "top": 379.5
+                            "top": 391.16690426397787
                         },
                         "tool_id": null,
                         "tool_state": "{\"optional\": false, \"tag\": null}",
@@ -1298,16 +1298,16 @@
                             }
                         ],
                         "position": {
-                            "left": 247.5,
-                            "top": 15.5
+                            "left": 255.6752869059826,
+                            "top": 7.031256434749481
                         },
                         "post_job_actions": {},
                         "tool_id": "Remove beginning1",
-                        "tool_state": "{\"input\": {\"__class__\": \"ConnectedValue\"}, \"num_lines\": \"4\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+                        "tool_state": "{\"input\": {\"__class__\": \"ConnectedValue\"}, \"num_lines\": \"1\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
                         "tool_uuid": null,
                         "tool_version": "1.0.0",
                         "type": "tool",
-                        "uuid": "451be0c7-245b-4d78-bf9d-96fba46229e7",
+                        "uuid": "4e43072f-beef-4eeb-82f6-9265ac62ad86",
                         "when": null,
                         "workflow_outputs": []
                     },
@@ -1338,7 +1338,7 @@
                         ],
                         "position": {
                             "left": 287,
-                            "top": 421.5
+                            "top": 433.16690426397787
                         },
                         "post_job_actions": {},
                         "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/length_and_gc_content/length_and_gc_content/0.1.2",
@@ -1364,7 +1364,7 @@
                     },
                     "4": {
                         "annotation": "",
-                        "content_id": "Cut1",
+                        "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
                         "errors": null,
                         "id": 4,
                         "input_connections": {
@@ -1375,38 +1375,44 @@
                         },
                         "inputs": [],
                         "label": "Select unstranded counts",
-                        "name": "Cut",
+                        "name": "Advanced Cut",
                         "outputs": [
                             {
-                                "name": "out_file1",
+                                "name": "output",
                                 "type": "tabular"
                             }
                         ],
                         "position": {
-                            "left": 519.1500244140625,
-                            "top": 16.76666259765625
+                            "left": 525.5955784147375,
+                            "top": 0.0
                         },
                         "post_job_actions": {
-                            "RenameDatasetActionout_file1": {
+                            "RenameDatasetActionoutput": {
                                 "action_arguments": {
                                     "newname": "FeatureCount-like files"
                                 },
                                 "action_type": "RenameDatasetAction",
-                                "output_name": "out_file1"
+                                "output_name": "output"
                             }
                         },
-                        "tool_id": "Cut1",
-                        "tool_state": "{\"columnList\": \"c1,c2\", \"delimiter\": \"T\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+                        "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
+                        "tool_shed_repository": {
+                            "changeset_revision": "30b60202d990",
+                            "name": "text_processing",
+                            "owner": "bgruening",
+                            "tool_shed": "toolshed.g2.bx.psu.edu"
+                        },
+                        "tool_state": "{\"complement\": \"\", \"cut_type_options\": {\"cut_element\": \"-f\", \"__current_case__\": 0, \"delimiter\": \"\", \"colnames_option\": {\"header\": \"Y\", \"__current_case__\": 0, \"list\": [\"1\", \"2\"]}}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
                         "tool_uuid": null,
-                        "tool_version": "1.0.2",
+                        "tool_version": "9.11+galaxy0",
                         "type": "tool",
-                        "uuid": "b11fdc2b-2276-409c-875c-c2b0e943be31",
+                        "uuid": "13601da8-b04d-44ab-9526-08a24824576f",
                         "when": null,
                         "workflow_outputs": [
                             {
                                 "label": "counts_from_star",
-                                "output_name": "out_file1",
-                                "uuid": "5613b1fa-6997-4d90-8b5f-51d59da0a293"
+                                "output_name": "output",
+                                "uuid": "a19ebb4c-14e9-47ab-a8dc-f45dd347835b"
                             }
                         ]
                     },
@@ -1418,7 +1424,7 @@
                         "input_connections": {
                             "infile": {
                                 "id": 4,
-                                "output_name": "out_file1"
+                                "output_name": "output"
                             }
                         },
                         "inputs": [],
@@ -1432,7 +1438,7 @@
                         ],
                         "position": {
                             "left": 784.2644979114859,
-                            "top": 22.18775610020657
+                            "top": 33.85466036418441
                         },
                         "post_job_actions": {},
                         "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
@@ -1458,13 +1464,18 @@
                     }
                 },
                 "tags": [],
-                "uuid": "1fa2d21c-9679-4ba1-9aa7-ff03a698d1c4"
+                "uuid": "707ba105-5d75-413c-a165-488ad629da97"
             },
             "tool_id": null,
             "type": "subworkflow",
             "uuid": "8c6b2d36-71dc-42b5-9f86-8cddafb6a940",
             "when": null,
             "workflow_outputs": [
+                {
+                    "label": "counts_from_star",
+                    "output_name": "counts_from_star",
+                    "uuid": "5fee8aff-4023-43f1-a653-f5af5357d798"
+                },
                 {
                     "label": "Gene length",
                     "output_name": "gene_length",
@@ -1474,11 +1485,6 @@
                     "label": "counts_from_star_sorted",
                     "output_name": "counts_from_star_sorted",
                     "uuid": "bd3388e6-5b45-4fdc-9780-3efd1c34ebf8"
-                },
-                {
-                    "label": "counts_from_star",
-                    "output_name": "counts_from_star",
-                    "uuid": "5fee8aff-4023-43f1-a653-f5af5357d798"
                 }
             ]
         },
@@ -2114,6 +2120,11 @@
             "when": null,
             "workflow_outputs": [
                 {
+                    "label": "multiqc_reads_per_chrom_html",
+                    "output_name": "multiqc_reads_per_chrom_html",
+                    "uuid": "b306cb12-a275-4c6d-b609-47fdc208864b"
+                },
+                {
                     "label": "multiqc_read_distrib_html",
                     "output_name": "multiqc_read_distrib_html",
                     "uuid": "f2eed352-ca21-4d65-8810-f5a1d3c282b4"
@@ -2122,11 +2133,6 @@
                     "label": "multiqc_gene_body_cov_html",
                     "output_name": "multiqc_gene_body_cov_html",
                     "uuid": "3375d63c-cdc3-4fbb-8a55-6f504c934918"
-                },
-                {
-                    "label": "multiqc_reads_per_chrom_html",
-                    "output_name": "multiqc_reads_per_chrom_html",
-                    "uuid": "b306cb12-a275-4c6d-b609-47fdc208864b"
                 },
                 {
                     "label": "multiqc_dup_html",
@@ -2580,6 +2586,11 @@
             "when": null,
             "workflow_outputs": [
                 {
+                    "label": "multiqc_star_counts_html",
+                    "output_name": "multiqc_star_counts_html",
+                    "uuid": "105313d8-e31a-405d-8fcd-cc5fd93275e2"
+                },
+                {
                     "label": "pgt",
                     "output_name": "pgt",
                     "uuid": "9727824a-3eb2-4430-92d1-b3c40c3041d1"
@@ -2588,11 +2599,6 @@
                     "label": "inferexperiment",
                     "output_name": "inferexperiment",
                     "uuid": "fb810859-f2d0-43f8-ac7c-5c714c5c6805"
-                },
-                {
-                    "label": "multiqc_star_counts_html",
-                    "output_name": "multiqc_star_counts_html",
-                    "uuid": "105313d8-e31a-405d-8fcd-cc5fd93275e2"
                 }
             ]
         },
@@ -2783,6 +2789,6 @@
     "tags": [
         "transcriptomics"
     ],
-    "uuid": "0837b6c8-844f-4843-8cb1-c5c981acc4bf",
+    "uuid": "c0d113b0-9c3c-436f-93ed-a5b62b273e20",
     "version": 1
 }

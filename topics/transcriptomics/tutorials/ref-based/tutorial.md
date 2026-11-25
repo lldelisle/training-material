@@ -1154,10 +1154,13 @@ We will reformat the output of **STAR** to be similar to the output of **feature
 >    - *"Remove first"*: `4` (lines)
 >    - {% icon param-collection %} *"Text file"*: `RNA STAR on collection N: reads per gene` (output of **RNA STAR** {% icon tool %})
 >
-> 2. {% tool [Cut](Cut1) %} columns from a table with the following parameters:
->    - *"Cut columns"*: `c1,c2`
+> 2. {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} with the following parameters:
+>    - {% icon param-collection %} *"File to cut"*: `Remove beginning on collection N` (output of the **Remove beginning** {% icon tool %})
+>    - *"Operation"*: `Keep`
+>    - *"Cut by"*: `fields`
 >    - *"Delimited by"*: `Tab`
->    - {% icon param-collection %} *"From"*: `Remove beginning on collection N` (output of the **Remove beginning** {% icon tool %})
+>        - *"Is there a header for the data's columns ?"*: `Yes`
+>            - *"List of Fields"*: `c1: GeneID` `c2: Counts_unstrand`
 >
 > 3. Rename the collection `FeatureCount-like files`
 {: .hands_on}
@@ -2026,19 +2029,23 @@ To extract the normalized counts for the interesting genes, we join the normaliz
 > <hands-on-title>Extract the normalized counts of the most differentially expressed genes</hands-on-title>
 >
 > 1. {% tool [Join two Datasets side by side on a specified field](join1) %} with the following parameters:
->    - {% icon param-file %} *"Join"*: the `Normalized counts` file (output of **DESeq2** {% icon tool %})
+>    - {% icon param-file %} *"Join"*: the `Genes with significant adj p-value & abs(log2(FC)) > 1` file (output of **DESeq2** {% icon tool %})
 >    - *"using column"*: `Column: 1`
->    - {% icon param-file %} *"with"*: `Genes with significant adj p-value & abs(log2(FC)) > 1`
+>    - {% icon param-file %} *"with"*: `Normalized counts`
 >    - *"and column"*: `Column: 1`
 >    - *"Keep lines of first input that do not join with second input"*: `No`
 >    - *"Keep the header lines"*: `Yes`
 >
->    The generated file has more columns than we need for the heatmap: mean normalized counts, $$log_{2} FC$$ and other annotation information. We need to remove the extra columns.
+>    The generated file has more columns than we need for the heatmap: BaseMean (mean normalized counts), $$log_{2} FC$$ and other annotation information. We need to remove the extra columns.
 >
-> 2. {% tool [Cut](Cut1) %} columns from a table with the following parameters to extract the columns with the gene IDs and normalized counts:
->    - *"Cut columns"*: `c1-c8`
+> 2. {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} with the following parameters to extract the columns with the gene Symbols and normalized counts:
+>    - {% icon param-collection %} *"File to cut"*: the joined dataset (output of **Join two Datasets** {% icon tool %})
+>    - *"Operation"*: `Keep`
+>    - *"Cut by"*: `fields`
 >    - *"Delimited by"*: `Tab`
->    - {% icon param-file %} *"From"*: the joined dataset (output of **Join two Datasets** {% icon tool %})
+>        - *"Is there a header for the data's columns ?"*: `Yes`
+>            - *"List of Fields"*: `c13: GeneSymbol` `c15:GSM461176_untreat_single` `c16:GSM461177_untreat_paired` `c17:GSM461178_untreat_paired` `c18:GSM461182_untreat_single` `c19:GSM461179_treat_single` `c20:GSM461180_treat_paired` `c21:GSM461181_treat_paired`  _Note:_ If you don't want to click on each of them, use the _Switch to column select_ . Deselect the default `c1: GeneID` and select `c13: GeneSymbol`. Then, on your keyboard hold 'Shift' select the first sample and the last. When they are all selected, click on `Select highlighted`.
+>           ![Select all sample columns at once](../../images/ref-based/Advanced_cut_GeneSymbols_normalized.png "Select all sample columns at once")
 >
 > 3. Rename the output to `Normalized counts for the most differentially expressed genes`
 >
@@ -2046,7 +2053,7 @@ To extract the normalized counts for the interesting genes, we join the normaliz
 
 We now have a table with 114 lines (the 113 most differentially expressed genes and a header) and the normalized counts for these genes across the 7 samples.
 
-In the first column we have the gene identifiers. They are unique, but difficult to understand. If you want to work with the (more familiar) gene symbols, you can use "c21,c2-c8" for the column selection. However, be aware, gene symbols might not be unique.
+In the first column we have the gene Symbols. While these identifiers are more meaningful than the GeneIDs, they might not be unique. So it is sometimes preferable to use the `c1: GeneID` column instead of the `c13: GeneSymbol`.
 
 > <hands-on-title>Plot the heatmap of the normalized counts of these genes for the samples</hands-on-title>
 >
@@ -2193,13 +2200,16 @@ We have extracted genes that are differentially expressed in treated (PS gene-de
 >      - {% icon param-select %} *"If an expression cannot be computed for a row"*: `Fill in a replacement value`
 >      - {% icon param-select %} *"Replacement value"*: `False`
 >
-> 2. {% tool [Cut](Cut1) %} columns from a table with the following parameters:
->    - *"Cut columns"*: `c1,c8`
+> 2. {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} with the following parameters:
+>    - {% icon param-collection %} *"File to cut"*: the output of the **Compute** {% icon tool %}
+>    - *"Operation"*: `Keep`
+>    - *"Cut by"*: `fields`
 >    - *"Delimited by"*: `Tab`
->    - {% icon param-file %} *"From"*: the output of the **Compute** {% icon tool %}
+>        - *"Is there a header for the data's columns ?"*: `No`
+>            - *"List of Fields"*: `Column: 1` `Column: 8`
 >
 > 3. {% tool [Change Case](ChangeCase) %} with
->    - {% icon param-file %} *"From"*: the output of the previous **Cut** {% icon tool %}
+>    - {% icon param-file %} *"From"*: the output of the previous **Advanced Cut** {% icon tool %}
 >    - *"Change case of columns"*: `c1`
 >    - *"Delimited by"*: `Tab`
 >    - *"To"*: `Upper case`
@@ -2371,10 +2381,13 @@ Here we would like to visualize the 2 KEGG pathways: the over-represented `00010
 
 > <hands-on-title>Overlay log2FC on KEGG pathway</hands-on-title>
 >
-> 1. {% tool [Cut](Cut1) %} columns from a table with the following parameters:
->    - *"Cut columns"*: `c1,c3`
+> 1. {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} with the following parameters:
+>    - {% icon param-collection %} *"File to cut"*: `Genes with significant adj p-value`
+>    - *"Operation"*: `Keep`
+>    - *"Cut by"*: `fields`
 >    - *"Delimited by"*: `Tab`
->    - {% icon param-file %} *"From"*: `Genes with significant adj p-value`
+>        - *"Is there a header for the data's columns ?"*: `Yes`
+>            - *"List of Fields"*: `c1: GeneID` `c3: log2(FC)`
 >
 > 2. Rename to `Genes with significant adj p-value and their Log2 FC`
 >
