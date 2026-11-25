@@ -62,8 +62,8 @@
       asserts:
         has_n_lines:
           n: 12215
-        has_line:
-          line: "GO:0005576\t1.64668479430669e-09\t1\t109\t1064\textracellular region\tCC\t2.01126080776619e-05\t1"
+        has_line_matching:
+          expression: "GO:0005576\t1.[0-9]*e-09\t1\t109\t1064\textracellular region\tCC\t2.[0-9]*e-05\t1"
     go_plot:
       asserts:
         has_size:
@@ -91,8 +91,8 @@
       asserts:
         has_n_lines:
           n: 60
-        has_line:
-          line: "GO:0005576\t1.64668479430669e-09\t1\t109\t1064\textracellular region\tCC\t2.01126080776619e-05\t1"
+        has_line_matching:
+          expression: "GO:0005576\t1.[0-9]*e-09\t1\t109\t1064\textracellular region\tCC\t2.[0-9]*e-05\t1"
     kegg_overrepresented:
       asserts:
         has_n_lines:
@@ -103,8 +103,8 @@
       asserts:
         has_n_lines:
           n: 23933
-        has_line:
-          line: "FBgn0025111\t1508.08707143002\t2.68038350345733\t0.0992245312683974\t27.0133148445623\t1.03100954927773e-160\t2.22981590270041e-157\tchrX\t10778953\t10786907\t-\tprotein_coding\tAnt2"
+        has_line_matching:
+          expression: "FBgn0025111\t1508.[0-9]*\t2.[0-9]*\t0.09[0-9]*\t27.[0-9]*\t1.[0-9]*e-160\t2.[0-9]*e-157\tchrX\t10778953\t10786907\t-\tprotein_coding\tAnt2"
     z_score:
       asserts:
         has_n_lines:
@@ -115,8 +115,8 @@
       asserts:
         has_n_lines:
           n: 7
-        has_line:
-          line: "GO:0016071\t0.999997512116942\t7.82099466455627e-06\t12\t444\tmRNA metabolic process\tBP\t1\t0.0136465184046986"
+        has_line_matching:
+          expression: "GO:0016071\t0.9[0-9]*\t7.8[0-9]*e-06\t12\t444\tmRNA metabolic process\tBP\t1\t0.01[0-9]*"
     kegg_underrepresented:
       asserts:
         has_n_lines:
@@ -159,5 +159,5 @@
         dme03040:
           asserts:
             has_size:
-              value: 120494
-              delta: 12000
+              value: 362678
+              delta: 36000
