@@ -4,30 +4,35 @@
     "comments": [
         {
             "child_steps": [
-                3,
-                5
+                15,
+                8,
+                11,
+                12,
+                18,
+                22,
+                24
             ],
-            "color": "blue",
+            "color": "lime",
             "data": {
-                "title": "Find significant genes"
+                "title": "Make heatmap with top up/down regulated"
             },
-            "id": 0,
+            "id": 3,
             "position": [
-                325.45350634676464,
-                14.400000000000034
+                672.5535063467646,
+                652.3
             ],
             "size": [
-                468.8,
-                158.8
+                1358.2,
+                306.4
             ],
             "type": "frame"
         },
         {
             "child_steps": [
-                13,
-                9,
                 6,
-                4
+                4,
+                13,
+                9
             ],
             "color": "yellow",
             "data": {
@@ -65,38 +70,13 @@
             "type": "frame"
         },
         {
-            "child_steps": [
-                22,
-                8,
-                11,
-                12,
-                15,
-                18,
-                24
-            ],
-            "color": "lime",
-            "data": {
-                "title": "Make heatmap with top up/down regulated"
-            },
-            "id": 3,
-            "position": [
-                672.5535063467646,
-                652.3
-            ],
-            "size": [
-                1358.2,
-                306.4
-            ],
-            "type": "frame"
-        },
-        {
             "child_comments": [
                 3
             ],
             "child_steps": [
                 16,
-                19,
                 21,
+                19,
                 23
             ],
             "color": "orange",
@@ -111,6 +91,26 @@
             "size": [
                 1398.2,
                 733
+            ],
+            "type": "frame"
+        },
+        {
+            "child_steps": [
+                5,
+                3
+            ],
+            "color": "blue",
+            "data": {
+                "title": "Find significant genes"
+            },
+            "id": 0,
+            "position": [
+                325.45350634676464,
+                14.400000000000034
+            ],
+            "size": [
+                468.8,
+                158.8
             ],
             "type": "frame"
         }
@@ -237,6 +237,7 @@
             "post_job_actions": {},
             "tool_id": "Filter1",
             "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cond\": \"c8<0.01\", \"header_lines\": \"1\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "1.1.1",
             "type": "tool",
             "uuid": "4cdb358b-b756-4a71-95b1-b8856f0628cf",
@@ -274,6 +275,7 @@
             "post_job_actions": {},
             "tool_id": "join1",
             "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"field1\": \"1\", \"field2\": \"2\", \"fill_empty_columns\": {\"fill_empty_columns_switch\": \"no_fill\", \"__current_case__\": 0}, \"header\": \"-H\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"input2\": {\"__class__\": \"ConnectedValue\"}, \"partial\": \"\", \"unmatched\": \"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "2.1.3",
             "type": "tool",
             "uuid": "0228e1cd-2d5b-4b19-a9e9-9ceabd1cc5f9",
@@ -315,6 +317,7 @@
             },
             "tool_id": "Filter1",
             "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cond\": \"abs(c4)>0.58\", \"header_lines\": \"1\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "1.1.1",
             "type": "tool",
             "uuid": "2aa72c1c-9990-47f5-a11a-92624095a1cb",
@@ -323,7 +326,7 @@
         },
         "6": {
             "annotation": "",
-            "content_id": "Cut1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
             "errors": null,
             "id": 6,
             "input_connections": {
@@ -334,29 +337,36 @@
             },
             "inputs": [],
             "label": null,
-            "name": "Cut",
+            "name": "Advanced Cut",
             "outputs": [
                 {
-                    "name": "out_file1",
+                    "name": "output",
                     "type": "tabular"
                 }
             ],
             "position": {
-                "left": 979.9804286651178,
-                "top": 1087.1194209472594
+                "left": 962.5333251953125,
+                "top": 1093
             },
             "post_job_actions": {},
-            "tool_id": "Cut1",
-            "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"columnList\": \"c1,c5-c16\", \"delimiter\": \"T\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "1.0.2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "30b60202d990",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"complement\": \"\", \"cut_type_options\": {\"cut_element\": \"-f\", \"__current_case__\": 0, \"delimiter\": \"\", \"colnames_option\": {\"header\": \"Y\", \"__current_case__\": 0, \"list\": [\"1\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\"]}}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
-            "uuid": "8e0988c9-c049-4c51-b7b2-e65d692530fc",
+            "uuid": "7f6c2948-2c05-4d00-825f-a9982e0932e0",
             "when": null,
             "workflow_outputs": []
         },
         "7": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0",
             "errors": null,
             "id": 7,
             "input_connections": {
@@ -379,15 +389,16 @@
                 "top": 43.74383878697898
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "c41d78ae5fee",
+                "changeset_revision": "30b60202d990",
                 "name": "text_processing",
                 "owner": "bgruening",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
-            "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": \"1\", \"ignore_case\": false, \"infile\": {\"__class__\": \"ConnectedValue\"}, \"sortkeys\": [{\"__index__\": 0, \"column\": \"7\", \"order\": \"\", \"style\": \"g\"}], \"unique\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "9.5+galaxy2",
+            "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": \"1\", \"ignore_case\": \"false\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"sortkeys\": [{\"__index__\": 0, \"column\": \"7\", \"start_charpos\": null, \"end_charpos\": null, \"order\": \"\", \"style\": \"g\", \"ignore_case\": false, \"ignore_leading_blanks\": false}], \"unique\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
             "uuid": "47ed64a7-56ac-47b4-8b15-a3bd6366a1e2",
             "when": null,
@@ -395,7 +406,7 @@
         },
         "8": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0",
             "errors": null,
             "id": 8,
             "input_connections": {
@@ -418,15 +429,16 @@
                 "top": 763.0890116562471
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "c41d78ae5fee",
+                "changeset_revision": "30b60202d990",
                 "name": "text_processing",
                 "owner": "bgruening",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
-            "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": \"1\", \"ignore_case\": false, \"infile\": {\"__class__\": \"ConnectedValue\"}, \"sortkeys\": [{\"__index__\": 0, \"column\": \"4\", \"order\": \"\", \"style\": \"n\"}], \"unique\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "9.5+galaxy2",
+            "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": \"1\", \"ignore_case\": \"false\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"sortkeys\": [{\"__index__\": 0, \"column\": \"4\", \"start_charpos\": null, \"end_charpos\": null, \"order\": \"\", \"style\": \"n\", \"ignore_case\": false, \"ignore_leading_blanks\": false}], \"unique\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
             "uuid": "87a50994-51c4-4745-8743-b96e011ad3f2",
             "when": null,
@@ -434,13 +446,13 @@
         },
         "9": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/datamash_transpose/datamash_transpose/1.9+galaxy0",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/datamash_transpose/datamash_transpose/1.9+galaxy1",
             "errors": null,
             "id": 9,
             "input_connections": {
                 "in_file": {
                     "id": 6,
-                    "output_name": "out_file1"
+                    "output_name": "output"
                 }
             },
             "inputs": [],
@@ -457,15 +469,16 @@
                 "top": 1084.0598559500502
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/datamash_transpose/datamash_transpose/1.9+galaxy0",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/datamash_transpose/datamash_transpose/1.9+galaxy1",
             "tool_shed_repository": {
-                "changeset_revision": "a2667f8d23de",
+                "changeset_revision": "a884245d3b3a",
                 "name": "datamash_transpose",
                 "owner": "iuc",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
             "tool_state": "{\"__input_ext\": \"input\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"in_file\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "1.9+galaxy0",
+            "tool_uuid": null,
+            "tool_version": "1.9+galaxy1",
             "type": "tool",
             "uuid": "a54eb8a4-23d5-43fe-883e-4ac1b51131a9",
             "when": null,
@@ -506,6 +519,7 @@
             },
             "tool_id": "Show beginning1",
             "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": false, \"input\": {\"__class__\": \"ConnectedValue\"}, \"lineNum\": \"21\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "1.0.2",
             "type": "tool",
             "uuid": "c72d58a5-8b7b-4704-ade0-4d6f8f19c156",
@@ -539,6 +553,7 @@
             "post_job_actions": {},
             "tool_id": "Show beginning1",
             "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": false, \"input\": {\"__class__\": \"ConnectedValue\"}, \"lineNum\": \"11\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "1.0.2",
             "type": "tool",
             "uuid": "0b1a5ba1-3b12-410e-9f2b-1484a8daafa8",
@@ -572,6 +587,7 @@
             "post_job_actions": {},
             "tool_id": "Show tail1",
             "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": false, \"input\": {\"__class__\": \"ConnectedValue\"}, \"lineNum\": \"10\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "1.0.1",
             "type": "tool",
             "uuid": "c8e0f6af-e1b1-43f7-8b31-927aee72a5c0",
@@ -580,7 +596,7 @@
         },
         "13": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "errors": null,
             "id": 13,
             "input_connections": {
@@ -603,15 +619,16 @@
                 "top": 1080.6404506787421
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "48b42ee61bc5",
+                "changeset_revision": "94f3fd9ade04",
                 "name": "ggplot2_heatmap2",
                 "owner": "iuc",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
             "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cluster_cond\": {\"cluster\": \"no\", \"__current_case__\": 1}, \"colorchoice\": {\"type\": \"three\", \"__current_case__\": 2, \"color1\": \"#0000ff\", \"color2\": \"#ffffff\", \"color3\": \"#ff0000\"}, \"image_file_format\": \"pdf\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"key\": null, \"labels\": \"both\", \"title\": null, \"transform\": \"none\", \"zscore_cond\": {\"zscore\": \"cols\", \"__current_case__\": 2}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "3.2.0+galaxy1",
+            "tool_uuid": null,
+            "tool_version": "3.3.0+galaxy0",
             "type": "tool",
             "uuid": "1fe3b747-a5ea-4bbd-abf1-b79e9e3359ba",
             "when": null,
@@ -654,6 +671,7 @@
             "post_job_actions": {},
             "tool_id": "join1",
             "tool_state": "{\"__input_ext\": \"tabular\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"field1\": \"1\", \"field2\": \"1\", \"fill_empty_columns\": {\"fill_empty_columns_switch\": \"no_fill\", \"__current_case__\": 0}, \"header\": \"-H\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"input2\": {\"__class__\": \"ConnectedValue\"}, \"partial\": \"\", \"unmatched\": \"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "2.1.3",
             "type": "tool",
             "uuid": "34c94f4a-76a3-453c-86ce-4275ce70d473",
@@ -677,7 +695,7 @@
             },
             "inputs": [],
             "label": null,
-            "name": "Concatenate datasets",
+            "name": "Concatenate multiple datasets or collections",
             "outputs": [
                 {
                     "name": "out_file1",
@@ -691,6 +709,7 @@
             "post_job_actions": {},
             "tool_id": "cat1",
             "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"queries\": [{\"__index__\": 0, \"input2\": {\"__class__\": \"ConnectedValue\"}}], \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "1.0.0",
             "type": "tool",
             "uuid": "2c4c1044-4624-4075-9069-ed4609d4a9ba",
@@ -699,7 +718,7 @@
         },
         "16": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0",
             "errors": null,
             "id": 16,
             "input_connections": {
@@ -722,15 +741,16 @@
                 "top": 474.92118853737213
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "c41d78ae5fee",
+                "changeset_revision": "30b60202d990",
                 "name": "text_processing",
                 "owner": "bgruening",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
-            "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": \"1\", \"ignore_case\": false, \"infile\": {\"__class__\": \"ConnectedValue\"}, \"sortkeys\": [{\"__index__\": 0, \"column\": \"4\", \"order\": \"\", \"style\": \"n\"}], \"unique\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "9.5+galaxy2",
+            "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"header\": \"1\", \"ignore_case\": \"false\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"sortkeys\": [{\"__index__\": 0, \"column\": \"4\", \"start_charpos\": null, \"end_charpos\": null, \"order\": \"\", \"style\": \"n\", \"ignore_case\": false, \"ignore_leading_blanks\": false}], \"unique\": false, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
             "uuid": "3ca328d8-8ab5-4106-a04b-da9c6a9d3ea8",
             "when": null,
@@ -738,7 +758,7 @@
         },
         "17": {
             "annotation": "",
-            "content_id": "Cut1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
             "errors": null,
             "id": 17,
             "input_connections": {
@@ -749,23 +769,30 @@
             },
             "inputs": [],
             "label": null,
-            "name": "Cut",
+            "name": "Advanced Cut",
             "outputs": [
                 {
-                    "name": "out_file1",
+                    "name": "output",
                     "type": "tabular"
                 }
             ],
             "position": {
-                "left": 1522.889306980217,
-                "top": 32.3960350474822
+                "left": 1522.5333251953125,
+                "top": 33
             },
             "post_job_actions": {},
-            "tool_id": "Cut1",
-            "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"columnList\": \"c2,c12-c23\", \"delimiter\": \"T\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "1.0.2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "30b60202d990",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"complement\": \"\", \"cut_type_options\": {\"cut_element\": \"-f\", \"__current_case__\": 0, \"delimiter\": \"\", \"colnames_option\": {\"header\": \"Y\", \"__current_case__\": 0, \"list\": [\"2\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\"]}}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
-            "uuid": "26be171e-b91c-4cc7-af94-88aa005f2ef0",
+            "uuid": "abf6e1b8-ac45-4cba-8b3c-f430930bbdb3",
             "when": null,
             "workflow_outputs": []
         },
@@ -800,6 +827,7 @@
             "post_job_actions": {},
             "tool_id": "join1",
             "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"field1\": \"1\", \"field2\": \"1\", \"fill_empty_columns\": {\"fill_empty_columns_switch\": \"no_fill\", \"__current_case__\": 0}, \"header\": \"-H\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"input2\": {\"__class__\": \"ConnectedValue\"}, \"partial\": \"\", \"unmatched\": \"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
             "tool_version": "2.1.3",
             "type": "tool",
             "uuid": "cee4d9e9-f9f2-498a-bf88-c2b25ddb4d2f",
@@ -808,7 +836,7 @@
         },
         "19": {
             "annotation": "",
-            "content_id": "Cut1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
             "errors": null,
             "id": 19,
             "input_connections": {
@@ -819,35 +847,42 @@
             },
             "inputs": [],
             "label": null,
-            "name": "Cut",
+            "name": "Advanced Cut",
             "outputs": [
                 {
-                    "name": "out_file1",
+                    "name": "output",
                     "type": "tabular"
                 }
             ],
             "position": {
-                "left": 1545.5345482729736,
-                "top": 471.8460755176066
+                "left": 1544.5333251953125,
+                "top": 469
             },
             "post_job_actions": {},
-            "tool_id": "Cut1",
-            "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"columnList\": \"c2,c12-c23\", \"delimiter\": \"T\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "1.0.2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "30b60202d990",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"complement\": \"\", \"cut_type_options\": {\"cut_element\": \"-f\", \"__current_case__\": 0, \"delimiter\": \"\", \"colnames_option\": {\"header\": \"Y\", \"__current_case__\": 0, \"list\": [\"2\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\"]}}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
-            "uuid": "a018910b-14b5-4d76-acf2-9ff9b941e97c",
+            "uuid": "22cbec5d-6b87-42cd-9aca-ee6fd8948abe",
             "when": null,
             "workflow_outputs": []
         },
         "20": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "errors": null,
             "id": 20,
             "input_connections": {
                 "input1": {
                     "id": 17,
-                    "output_name": "out_file1"
+                    "output_name": "output"
                 }
             },
             "inputs": [],
@@ -864,15 +899,16 @@
                 "top": 32.39607309262772
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "48b42ee61bc5",
+                "changeset_revision": "94f3fd9ade04",
                 "name": "ggplot2_heatmap2",
                 "owner": "iuc",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
             "tool_state": "{\"__input_ext\": \"input\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cluster_cond\": {\"cluster\": \"no\", \"__current_case__\": 1}, \"colorchoice\": {\"type\": \"three\", \"__current_case__\": 2, \"color1\": \"#0000ff\", \"color2\": \"#ffffff\", \"color3\": \"#ff0000\"}, \"image_file_format\": \"pdf\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"key\": null, \"labels\": \"both\", \"title\": null, \"transform\": \"none\", \"zscore_cond\": {\"zscore\": \"rows\", \"__current_case__\": 1}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "3.2.0+galaxy1",
+            "tool_uuid": null,
+            "tool_version": "3.3.0+galaxy0",
             "type": "tool",
             "uuid": "2698cc33-38a2-4cc9-bb48-2e897e9ee0a8",
             "when": null,
@@ -886,13 +922,13 @@
         },
         "21": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "errors": null,
             "id": 21,
             "input_connections": {
                 "input1": {
                     "id": 17,
-                    "output_name": "out_file1"
+                    "output_name": "output"
                 }
             },
             "inputs": [],
@@ -909,15 +945,16 @@
                 "top": 285.7191798560735
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "48b42ee61bc5",
+                "changeset_revision": "94f3fd9ade04",
                 "name": "ggplot2_heatmap2",
                 "owner": "iuc",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
             "tool_state": "{\"__input_ext\": \"input\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cluster_cond\": {\"cluster\": \"no\", \"__current_case__\": 1}, \"colorchoice\": {\"type\": \"three\", \"__current_case__\": 2, \"color1\": \"#0000ff\", \"color2\": \"#ffffff\", \"color3\": \"#ff0000\"}, \"image_file_format\": \"pdf\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"key\": null, \"labels\": \"both\", \"title\": null, \"transform\": \"none\", \"zscore_cond\": {\"zscore\": \"none\", \"__current_case__\": 0, \"scale\": \"none\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "3.2.0+galaxy1",
+            "tool_uuid": null,
+            "tool_version": "3.3.0+galaxy0",
             "type": "tool",
             "uuid": "334dcf84-cc46-4952-9202-5ee186f58886",
             "when": null,
@@ -925,7 +962,7 @@
         },
         "22": {
             "annotation": "",
-            "content_id": "Cut1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
             "errors": null,
             "id": 22,
             "input_connections": {
@@ -936,35 +973,42 @@
             },
             "inputs": [],
             "label": null,
-            "name": "Cut",
+            "name": "Advanced Cut",
             "outputs": [
                 {
-                    "name": "out_file1",
+                    "name": "output",
                     "type": "tabular"
                 }
             ],
             "position": {
-                "left": 1587.864825945774,
-                "top": 702.899987342747
+                "left": 1582.5333251953125,
+                "top": 703
             },
             "post_job_actions": {},
-            "tool_id": "Cut1",
-            "tool_state": "{\"__input_ext\": \"tabular\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"columnList\": \"c2,c12-c23\", \"delimiter\": \"T\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "1.0.2",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "30b60202d990",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"complement\": \"\", \"cut_type_options\": {\"cut_element\": \"-f\", \"__current_case__\": 0, \"delimiter\": \"\", \"colnames_option\": {\"header\": \"Y\", \"__current_case__\": 0, \"list\": [\"2\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\"]}}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "9.11+galaxy0",
             "type": "tool",
-            "uuid": "d112c903-a2d3-47ae-9786-e9926be2fb6a",
+            "uuid": "5dd8f12e-859c-4b45-9d26-04cbb42997dd",
             "when": null,
             "workflow_outputs": []
         },
         "23": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "errors": null,
             "id": 23,
             "input_connections": {
                 "input1": {
                     "id": 19,
-                    "output_name": "out_file1"
+                    "output_name": "output"
                 }
             },
             "inputs": [],
@@ -981,15 +1025,16 @@
                 "top": 468.9372197836377
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "48b42ee61bc5",
+                "changeset_revision": "94f3fd9ade04",
                 "name": "ggplot2_heatmap2",
                 "owner": "iuc",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
             "tool_state": "{\"__input_ext\": \"input\", \"__use_cached_job__\": \"true\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cluster_cond\": {\"cluster\": \"no\", \"__current_case__\": 1}, \"colorchoice\": {\"type\": \"three\", \"__current_case__\": 2, \"color1\": \"#0000ff\", \"color2\": \"#ffffff\", \"color3\": \"#ff0000\"}, \"image_file_format\": \"pdf\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"key\": null, \"labels\": \"both\", \"title\": null, \"transform\": \"none\", \"zscore_cond\": {\"zscore\": \"rows\", \"__current_case__\": 1}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "3.2.0+galaxy1",
+            "tool_uuid": null,
+            "tool_version": "3.3.0+galaxy0",
             "type": "tool",
             "uuid": "f746da30-e7cc-4893-9d2c-b3c906b2f7ed",
             "when": null,
@@ -997,13 +1042,13 @@
         },
         "24": {
             "annotation": "",
-            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "errors": null,
             "id": 24,
             "input_connections": {
                 "input1": {
                     "id": 22,
-                    "output_name": "out_file1"
+                    "output_name": "output"
                 }
             },
             "inputs": [],
@@ -1020,15 +1065,16 @@
                 "top": 707.0341384231106
             },
             "post_job_actions": {},
-            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1",
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0",
             "tool_shed_repository": {
-                "changeset_revision": "48b42ee61bc5",
+                "changeset_revision": "94f3fd9ade04",
                 "name": "ggplot2_heatmap2",
                 "owner": "iuc",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
             "tool_state": "{\"__input_ext\": \"input\", \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"cluster_cond\": {\"cluster\": \"no\", \"__current_case__\": 1}, \"colorchoice\": {\"type\": \"three\", \"__current_case__\": 2, \"color1\": \"#0000ff\", \"color2\": \"#ffffff\", \"color3\": \"#ff0000\"}, \"image_file_format\": \"pdf\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"key\": null, \"labels\": \"both\", \"title\": null, \"transform\": \"none\", \"zscore_cond\": {\"zscore\": \"rows\", \"__current_case__\": 1}, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
-            "tool_version": "3.2.0+galaxy1",
+            "tool_uuid": null,
+            "tool_version": "3.3.0+galaxy0",
             "type": "tool",
             "uuid": "73d96362-8c72-451d-a665-2a1bc75ddc3c",
             "when": null,
@@ -1038,6 +1084,6 @@
     "tags": [
         "transcriptomics"
     ],
-    "uuid": "1a4aef65-3514-418f-bf44-521173ece180",
-    "version": 5
+    "uuid": "fe124655-6199-4250-a5eb-e4c3fea767ae",
+    "version": 2
 }

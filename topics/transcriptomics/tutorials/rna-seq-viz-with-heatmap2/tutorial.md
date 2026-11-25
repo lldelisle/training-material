@@ -24,8 +24,8 @@ input_histories:
 
 answer_histories:
   - label: "UseGalaxy.eu"
-    history: https://usegalaxy.eu/u/delislel/h/results-gtn-heatmap2-20251120
-    date: 2025-11-20
+    history: https://usegalaxy.eu/u/delislel/h/results-gtn-heatmap2-20261125
+    date: 2026-11-25
 ---
 
 
@@ -124,7 +124,7 @@ This gives us a file with all the significant genes, the genes that pass our thr
 
 > <hands-on-title>Extract the top significant genes by P value</hands-on-title>
 >
-> 1. {% tool [Sort](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2) %} data in ascending or descending order, with the following settings to sort by P value:
+> 1. {% tool [Sort](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0) %} data in ascending or descending order, with the following settings to sort by P value:
 >    - {% icon param-file %} *"Sort Query"*: `Significant genes` (output of 2nd Filter {% icon tool %})
 >    - {% icon param-text %} *"Number of header lines to skip"*: `1`
 >    - {% icon param-select %} *"on Column"*: `Column: 7`
@@ -154,10 +154,14 @@ First click on the {% icon galaxy-eye %} (eye) icon and take a look at the `norm
 >
 >    The generated file has more columns than we need for the heatmap. In addition to the columns with normalized counts (in log2), there is the $$log_{2} FC$$ and other information. We need to remove the extra columns.
 >
-> 2. {% tool [Cut](Cut1) %} columns from a table to extract the columns with the gene symbols and normalized counts
->    - {% icon param-text %} *"Cut columns"*: `c2,c12-c23`
->    - {% icon param-select %} *"Delimited by"*: `Tab`
->    - {% icon param-file %} *"From"*: the joined dataset (output of **Join two Datasets** {% icon tool %})
+> 2. {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} with the following parameters to extract the columns with the gene Symbols and normalized counts:
+>    - {% icon param-collection %} *"File to cut"*: the joined dataset (output of **Join two Datasets** {% icon tool %})
+>    - *"Operation"*: `Keep`
+>    - *"Cut by"*: `fields`
+>    - *"Delimited by"*: `Tab`
+>        - *"Is there a header for the data's columns ?"*: `Yes`
+>            - *"List of Fields"*: `c2: SYMBOL` `c12:MCL1.DG` `c13:MCL1.DH` `c14:MCL1.DI` `c15:MCL1.DJ` `c16:MCL1.DK` `c17:MCL1.DL` `c18:MCL1.LA` `c19:MCL1.LB` `c20:MCL1.LC` `c21:MCL1.LD` `c22:MCL1.LE` `c23:MCL1.LF`  _Note:_ If you don't want to click on each of them, use the _Switch to column select_ . Deselect the default `c1: ENTREZID` and select `c2: SYMBOL`. Then, on your keyboard hold 'Shift' select the first sample, scroll down, hold 'Shift' again and select the last. When they are all selected, Click on `Select highlighted`.
+>           ![Select all sample columns at once](../../images/rna-seq-viz-with-heatmap2/Advanced_cut.png "Select all sample columns at once")
 {: .hands_on}
 
 The file should look like below with the 20 genes in the rows and the 12 samples in the columns (just the first few columns are shown).
@@ -170,8 +174,8 @@ Now that we have our file with just the normalized counts for the genes we want,
 
 > <hands-on-title>Plot the heatmap of top genes</hands-on-title>
 >
-> 1. {% tool [heatmap2](toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1) %} to plot the heatmap:
->    - {% icon param-file %} *"Input should have column headers"*: output of **Cut** {% icon tool %}
+> 1. {% tool [heatmap2](toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0) %} to plot the heatmap:
+>    - {% icon param-file %} *"Input should have column headers"*: output of **Advanced Cut** {% icon tool %}
 >    - {% icon param-select %} *"Data transformation"*: `Plot the data as it is`
 >    - {% icon param-select %} *"Compute z-scores prior to clustering"*: `Compute on rows` (scale genes)
 >    - {% icon param-select %} *"Enable data clustering"*: `No`
@@ -195,9 +199,9 @@ You should see a heatmap like below. Note that here we are plotting the top gene
 >    > 2. We scale the genes as otherwise large expression values from highly expressed genes would dominate the plot, see below.
 >    >     ![Heatmap with no scaling](../../images/rna-seq-viz-with-heatmap2/heatmap2_top20_noscale.png "Heatmap without scaling genes")
 >    >
->    > 3. To make the heatmap with these genes ordered by logFC, we could {% tool [Sort](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2) %} the output of the **Join** {% icon tool %} step on the logFC column (Column 4), then {% tool [Cut](Cut1) %} the columns as before and remake the heatmap. It should look like below.
+>    > 3. To make the heatmap with these genes ordered by logFC, we could {% tool [Sort](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0) %} the output of the **Join** {% icon tool %} step on the logFC column (Column 4), then use {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} to select the columns as before and remake the heatmap. It should look like below.
 >    >     ![Heatmap sorted by logFC](../../images/rna-seq-viz-with-heatmap2/heatmap2_top20_sorted_by_lfc.png "Heatmap sorted by logFC")
->    > 4. To make a heatmap of the most upregulated and downregulated significant genes, we could {% tool [Sort](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.5+galaxy2) %} the `Significant genes` on the logFC column (instead of P value above), then use the {% tool [Select first](Show beginning1) %} and {% tool [Select last](Show tail1) %} tools to select the genes with the largest and smallest fold changes (10 genes for each) and {% tool [Concatenate multiple datasets or collections](cat1) %} to combine the outputs of the first and last Selects into one file. We would then repeat the {% tool [Join two Datasets side by side on a specified field](join1) %} and {% tool [Cut](Cut1) %} steps as before to get the normalized counts and make the heatmap as below (Note that one gene name in the middle is missing as it is a gene that has NA for gene symbol)
+>    > 4. To make a heatmap of the most upregulated and downregulated significant genes, we could {% tool [Sort](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sort_header_tool/9.11+galaxy0) %} the `Significant genes` on the logFC column (instead of P value above), then use the {% tool [Select first](Show beginning1) %} and {% tool [Select last](Show tail1) %} tools to select the genes with the largest and smallest fold changes (10 genes for each) and {% tool [Concatenate multiple datasets or collections](cat1) %} to combine the outputs of the first and last Selects into one file. We would then repeat the {% tool [Join two Datasets side by side on a specified field](join1) %} and {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} steps as before to get the normalized counts and make the heatmap as below (Note that one gene name in the middle is missing as it is a gene that has NA for gene symbol)
 >    >     ![Heatmap for top logFC](../../images/rna-seq-viz-with-heatmap2/heatmap2_top_up_and_down.png "Heatmap of top 10 up and down")
 >    {: .solution}
 {: .question}
@@ -225,16 +229,18 @@ As in the previous example, we need to extract the normalized counts for just th
 >    - {% icon param-file %} *"with"*: `normalized counts` file
 >    - {% icon param-select %} *"and column"*: `Column: 2`
 >    - {% icon param-select %} *"Keep the header lines"*: `Yes`
-> 2. {% tool [Cut](Cut1) %} columns from a table to extract the columns with the gene ids and normalized counts:
->    - {% icon param-text %} *"Cut columns"*: `c1,c5-c16`
->    - {% icon param-select %} *"Delimited by"*: `Tab`
->    - {% icon param-file %} *"From"*: the joined dataset (output of **Join two Datasets** {% icon tool %})
+> 2. {% tool [Advanced Cut](toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_cut_tool/9.11+galaxy0) %} with the following parameters to extract the columns with the GeneID and normalized counts:
+>    - {% icon param-collection %} *"File to cut"*: the joined dataset (output of **Join two Datasets** {% icon tool %})
+>    - *"Operation"*: `Keep`
+>    - *"Cut by"*: `fields`
+>    - *"Delimited by"*: `Tab`
+>        - *"Is there a header for the data's columns ?"*: `Yes`
+>            - *"List of Fields"*: `c1: GeneID` `c5:MCL1.DG` `c6:MCL1.DH` `c7:MCL1.DI` `c8:MCL1.DJ` `c9:MCL1.DK` `c10:MCL1.DL` `c11:MCL1.LA` `c12:MCL1.LB` `c13:MCL1.LC` `c14:MCL1.LD` `c15:MCL1.LE` `c16:MCL1.LF`  _Note:_ If you don't want to click on each of them, use the _Switch to column select_ . On your keyboard hold 'Shift' select the first sample, scroll down, hold 'Shift' again and select the last. When they are all selected, Click on `Select highlighted`.
 >
 >    The genes are in rows and the samples in columns, we could leave the genes in rows but we will transpose to have genes in columns and samples in rows as in the Figure in the paper.
 >
-> 3. {% tool [Transpose](toolshed.g2.bx.psu.edu/repos/iuc/datamash_transpose/datamash_transpose/1.9+galaxy0) %} to have samples in rows and genes in columns:
->    - *"Input tabular dataset"*:
->        - {% icon param-file %} *"From"*: the `Cut` dataset (output of **Cut** {% icon tool %})
+> 3. {% tool [Transpose](toolshed.g2.bx.psu.edu/repos/iuc/datamash_transpose/datamash_transpose/1.9+galaxy1) %} to have samples in rows and genes in columns:
+>    - {% icon param-file %} *"Input tabular dataset"*: the output of **Advanced Cut** {% icon tool %}
 {: .hands_on}
 
 We now have a table with the 31 genes in columns and the normalized counts for the 12 samples in rows, similar to below (just the first few columns are shown).
@@ -245,7 +251,7 @@ We now have a table with the 31 genes in columns and the normalized counts for t
 
 > <hands-on-title>Plot the heatmap of custom genes</hands-on-title>
 >
-> 1. {% tool [heatmap2](toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.2.0+galaxy1) %} with the following parameters:
+> 1. {% tool [heatmap2](toolshed.g2.bx.psu.edu/repos/iuc/ggplot2_heatmap2/ggplot2_heatmap2/3.3.0+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Input should have column headers"*: the generated table (output of **Transpose** {% icon tool %})
 >    - {% icon param-select %} *"Data transformation"*: `Plot the data as it is`
 >    - {% icon param-select %} *"Compute z-scores prior to clustering"*: `Compute on columns` (scale genes)
